@@ -38,7 +38,7 @@ int main(int argc, char* argv[])
 	{
 		if(GraphicsColor.Alpha == 0xff)
 		{
-        return 349587;
+            return 349587;
 		} else {
 			return 6666;
 		}

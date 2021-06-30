@@ -1,7 +1,19 @@
-# Step by Step Tutorials on how to code a 64-Bit kernel for OS Development
+# Step by Step Tutorials on how to code a 64-Bit loader and kernel for OS Development
 
 # NOTES  
 - You will need the BOOTX64.EFI file from my other GitHub Repo. https://github.com/ThatOSDev/UEFI-Tuts  
+- The drive.hdd file is included, I didn't realize this when I made the first video.  
+- The bios64.bin file is for qemu to work. Otherwise it will fail to load.  
+- Although the BUILD INSTRUCTIONS shows Windows, MAC or Linux, this tutorial series is is using a windows host. However all code and makefile command switches should all work if you follow the build instructions.  
+
+# TOOLS NEEDED  
+- OSFMount ---- https://www.osforensics.com/tools/mount-disk-images.html  
+- QEMU ( Optional ) ---- https://www.qemu.org/  
+- VirtualBox ( Optional ) ---- https://www.virtualbox.org/  
+- GCC for windows ---- https://nuwen.net/mingw.html  
+
+# BUILD INSTRCUTIONS  
+[https://github.com/ThatOSDev/ThatOS64/tree/master/BUILD.md](https://github.com/ThatOSDev/ThatOS64/tree/master/BUILD.md)  
 
 # SOCIAL MEDIA LINKS
 **DISCORD** : https://discord.gg/6gxEF3QCtB  
@@ -24,6 +36,7 @@
 
 More Tuts Coming soon... ( **NOTE : The order of this list is subject to change** )  
 
+	* ABI Interface
     * Graphic Text ( Using custom Font )  
 	* Memap ( Memory Manager )  
 	* BMP / TGA Image Loading  
