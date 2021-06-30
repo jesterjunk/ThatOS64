@@ -20,11 +20,10 @@
 
 # TUTORIALS
 - RIGHT CLICK THE LINKS AND OPEN IN NEW TAB  
-    - Comming Soon  
+    - INITIAL SETUP &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; --- [YOUTUBE&nbsp;&nbsp; 1]  ---  [SOURCE CODE](https://github.com/ThatOSDev/ThatOS64/tree/master/src/code%201)  
 
 More Tuts Coming soon... ( **NOTE : The order of this list is subject to change** )  
 
-    * Initial Kernel Loading from EFI  
     * Graphic Text ( Using custom Font )  
 	* Memap ( Memory Manager )  
 	* BMP / TGA Image Loading  
