@@ -5,13 +5,6 @@
 
              // ARGB             
 #define ORANGE 0xffffa500
-#define CYAN   0xff00ffff
-#define RED    0xffff0000
-#define GREEN  0xff00ff00
-#define BLUE   0xff0000ff
-#define GRAY   0xff888888
-#define WHITE  0xffffffff
-#define BLACK  0xff000000
 
 typedef struct GRAPHICS_COLOR_PIXEL
 {
@@ -21,21 +14,25 @@ typedef struct GRAPHICS_COLOR_PIXEL
     uint8_t   Alpha;
 } GRAPHICS_COLOR_PIXEL;
 
-// Forward declare
-void* memcpy(void* dst, const void* src, unsigned long long size);
-GRAPHICS_COLOR_PIXEL SetGraphicsColor(uint32_t color);
-
-//int main()
-//int main(int argc)
-int main(int argc, char* argv[])
+typedef struct BLOCKINFO
 {
-	int* m;
-	memcpy(&m, (int*)&argc, 4);
-	
-	GRAPHICS_COLOR_PIXEL GraphicsColor = SetGraphicsColor(ORANGE);
-	if(m == (int*)3456)
+	int                  MagicNumber;
+    unsigned long long*  BaseAddress;
+    unsigned long long   BufferSize;
+    unsigned int         ScreenWidth;
+    unsigned int         ScreenHeight;
+    unsigned int         PixelsPerScanLine;
+} BLOCKINFO;
+
+GRAPHICS_COLOR_PIXEL* SetGraphicsColor(uint32_t color);
+
+int main(int argc, BLOCKINFO* bi)
+{
+	BLOCKINFO* biStruct = bi;
+	GRAPHICS_COLOR_PIXEL* GraphicsColor = SetGraphicsColor(ORANGE);
+	if(biStruct->MagicNumber == 3456)
 	{
-		if(GraphicsColor.Alpha == 0xff)
+		if(GraphicsColor->Alpha == 0xff)
 		{
             return 349587;
 		} else {
@@ -46,19 +43,12 @@ int main(int argc, char* argv[])
 	}
 }
 
-void* memcpy(void* dst, const void* src, unsigned long long size)
+GRAPHICS_COLOR_PIXEL* SetGraphicsColor(uint32_t color)
 {
-    for ( unsigned long long i = 0; i < size; i++ )
-        ((unsigned char*) dst)[i] = ((const unsigned char*) src)[i];
-    return dst;
-}
-
-GRAPHICS_COLOR_PIXEL SetGraphicsColor(uint32_t color)
-{
-    GRAPHICS_COLOR_PIXEL GColor;
-    GColor.Alpha    = color >> 24;
-    GColor.Red      = color >> 16;
-    GColor.Green    = color >> 8;
-    GColor.Blue     = color;
+    GRAPHICS_COLOR_PIXEL* GColor = ((void*)0);
+    GColor->Alpha    = color >> 24;
+    GColor->Red      = color >> 16;
+    GColor->Green    = color >> 8;
+    GColor->Blue     = color;
     return GColor;
 }

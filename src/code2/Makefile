@@ -16,7 +16,7 @@ all: loader.bin
 	$(CC) $(CFLAGS) -c $< -o $@
 
 loader.bin: loader.c
-	$(CC) $(CFLAGS) -Wl,--oformat=binary -e main -c $< -o $@
+	$(CC) $(CFLAGS) -ffreestanding -Wl,--oformat=binary -e main -c $< -o $@
 
 clean:
 	@echo "Cleaning files...."
