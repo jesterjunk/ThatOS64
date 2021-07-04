@@ -30,11 +30,11 @@ int main(int argc, BLOCKINFO* bi)
 {
 	BLOCKINFO* biStruct = bi;
 	GRAPHICS_COLOR_PIXEL* GraphicsColor = SetGraphicsColor(ORANGE);
-	if(biStruct->MagicNumber == 3456)
+	if(biStruct->MagicNumber == 31337)
 	{
 		if(GraphicsColor->Alpha == 0xff)
 		{
-            return 349587;
+            return biStruct->MagicNumber;
 		} else {
 			return 6666;
 		}
