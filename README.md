@@ -34,11 +34,11 @@
 # TUTORIALS
 - RIGHT CLICK THE LINKS AND OPEN IN NEW TAB  
     - INITIAL SETUP &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; --- [YT&nbsp;&nbsp; 1](https://www.youtube.com/watch?v=WCFEEboRHNg)  ---  [CODE](https://github.com/ThatOSDev/ThatOS64/tree/master/src/code1)  
-	- ABI INTERFACE 1 &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; --- [YT&nbsp;&nbsp; 2a](https://www.youtube.com/watch?v=T7iXp1UwaiA) | [YT&nbsp;&nbsp; 2b](https://www.youtube.com/watch?v=zkCHrM-B0Ig) | [YT&nbsp;&nbsp; 2c](https://www.youtube.com/watch?v=eUOr01eVGVM) ---  [CODE](https://github.com/ThatOSDev/ThatOS64/tree/master/src/code2) 
+	- ABI INTERFACE &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; --- [YT&nbsp;&nbsp; 2a](https://www.youtube.com/watch?v=T7iXp1UwaiA) | [YT&nbsp;&nbsp; 2b](https://www.youtube.com/watch?v=zkCHrM-B0Ig) | [YT&nbsp;&nbsp; 2c](https://www.youtube.com/watch?v=eUOr01eVGVM) ---  [CODE](https://github.com/ThatOSDev/ThatOS64/tree/master/src/code2) 
+	- GRAPHIC TEXT &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; --- [YT&nbsp;&nbsp; 3] ---  [CODE](https://github.com/ThatOSDev/ThatOS64/tree/master/src/code3) 
 
 More Tuts Coming soon... ( **NOTE : The order of this list is subject to change** )  
 
-    * Graphic Text ( Using custom Font )  
 	* Memap ( Memory Manager )  
 	* BMP / TGA Image Loading  
 	* PCI  
