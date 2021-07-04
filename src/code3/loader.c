@@ -2,7 +2,6 @@
 // https://github.com/ThatOSDev/ThatOS64
 
 #include "stdint.h"
-#include "tosdfont.h"
 
              // ARGB             
 #define ORANGE 0xffffa500
@@ -32,14 +31,6 @@ typedef struct BLOCKINFO
     uint32_t   PixelsPerScanLine;
 } BLOCKINFO;
 
-/*
-typedef struct PIXELPOSITIONS
-{
-    uint32_t PixelxPos;
-    uint32_t PixelyPos;
-} PIXELPOSITIONS;
-*/
-
 GRAPHICS_COLOR_PIXEL* SetGraphicsColor(uint32_t color);
 void CreateBufferFilledBox(uint32_t xPos, uint32_t yPos, uint32_t w, uint32_t h, GRAPHICS_COLOR_PIXEL* gc, BLOCKINFO* bli);
 
@@ -51,8 +42,7 @@ int32_t main(int32_t argc, BLOCKINFO* bi)
 	{
 		if(GraphicsColor->Alpha == 0xff)
 		{
-			GRAPHICS_COLOR_PIXEL* gree = SetGraphicsColor(GREEN);
-	        CreateBufferFilledBox(1, 1, 150, 150, gree, biStruct);
+	        CreateBufferFilledBox(1, 1, 150, 150, GraphicsColor, biStruct);
             return biStruct->MagicNumber;
 		} else {
 			return 6666;
