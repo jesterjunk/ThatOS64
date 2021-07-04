@@ -1,6 +1,7 @@
 # Step by Step Tutorials on how to code a 64-Bit loader and kernel for OS Development
 
 # NOTES  
+- Although this can work on real hardware, I do NOT recommend doing so unless you know what you are doing. Use virtualbox or qemu until **you know** you have solid working code.
 - You will need the BOOTX64.EFI file from my other GitHub Repo. https://github.com/ThatOSDev/UEFI-Tuts  
 - The drive.hdd file is included, I didn't realize this when I made the first video.  
 - The bios64.bin file is for qemu to work. Otherwise it will fail to load.  
