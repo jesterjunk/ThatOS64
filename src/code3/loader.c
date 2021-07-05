@@ -34,22 +34,20 @@ typedef struct BLOCKINFO
 GRAPHICS_COLOR_PIXEL* SetGraphicsColor(uint32_t color);
 void CreateBufferFilledBox(uint32_t xPos, uint32_t yPos, uint32_t w, uint32_t h, GRAPHICS_COLOR_PIXEL* gc, BLOCKINFO* bli);
 
-int32_t main(int32_t argc, BLOCKINFO* bi)
+void main(int32_t argc, BLOCKINFO* bi)
 {
 	BLOCKINFO* biStruct = bi;
-	GRAPHICS_COLOR_PIXEL* GraphicsColor = SetGraphicsColor(ORANGE);
+	
 	if(biStruct->MagicNumber == 31337)
 	{
-		if(GraphicsColor->Alpha == 0xff)
-		{
-	        CreateBufferFilledBox(1, 1, 150, 150, GraphicsColor, biStruct);
-            return biStruct->MagicNumber;
-		} else {
-			return 6666;
-		}
+		GRAPHICS_COLOR_PIXEL* GraphicsColor = SetGraphicsColor(ORANGE);
+		CreateBufferFilledBox(1, 1, 150, 150, GraphicsColor, biStruct);
 	} else {
-        return 7777;
+		GRAPHICS_COLOR_PIXEL* GraphicsColor = SetGraphicsColor(GREEN);
+		CreateBufferFilledBox(1, 1, 150, 150, GraphicsColor, biStruct);
 	}
+	
+	while(1){}
 }
 
 GRAPHICS_COLOR_PIXEL* SetGraphicsColor(uint32_t color)
