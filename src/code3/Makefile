@@ -1,6 +1,6 @@
 # Makefile
 CC        :=gcc
-CFLAGS    :=-Wall -Werror -m64 -mabi=ms -ffreestanding -IThatCLib
+CFLAGS    :=-Wall -Werror -m64 -mabi=ms -ffreestanding
 UNAME_S   :=$(shell uname -s)
 
 ifeq ($(UNAME_S),Darwin)
