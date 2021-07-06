@@ -34,12 +34,12 @@ typedef struct GRAPHICS_COLOR_PIXEL
 
 typedef struct BLOCKINFO
 {
-	int    MagicNumber;
+    int                  MagicNumber;
     unsigned long long*  BaseAddress;
     unsigned long long   BufferSize;
-    unsigned int   ScreenWidth;
-    unsigned int   ScreenHeight;
-    unsigned int   PixelsPerScanLine;
+    unsigned int         ScreenWidth;
+    unsigned int         ScreenHeight;
+    unsigned int         PixelsPerScanLine;
 } BLOCKINFO;
 
 GRAPHICS_COLOR_PIXEL* SetGraphicsColor(unsigned int color);
