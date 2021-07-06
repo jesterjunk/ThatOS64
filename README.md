@@ -1,5 +1,10 @@
 # Step by Step Tutorials on how to code a 64-Bit loader and kernel for OS Development
 
+![GitHub stars](https://img.shields.io/github/stars/ThatOSDev/ThatOS64?style=social)  
+![GitHub forks](https://img.shields.io/github/forks/ThatOSDev/ThatOS64?style=social)  
+![GitHub watchers](https://img.shields.io/github/watchers/ThatOSDev/ThatOS64?style=social)  
+![GitHub followers](https://img.shields.io/github/followers/ThatOSDev?style=social)  
+
 # NOTES  
 - Although this can work on real hardware, I do NOT recommend doing so unless you know what you are doing. Use virtualbox or qemu until **you know** you have solid working code.
 - You will need the BOOTX64.EFI file from my other GitHub Repo. https://github.com/ThatOSDev/UEFI-Tuts  
