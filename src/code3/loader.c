@@ -89,11 +89,11 @@ void CreateBufferFilledBox(unsigned int xPos, unsigned int yPos, unsigned int w,
 void GetCharacter(unsigned int xPos, unsigned int yPos, BLOCKINFO* block)
 {
     unsigned int initPos  = xPos;
-	unsigned int mcX      = initPos;
-	unsigned int mcY      = yPos;
-	unsigned int xCounter = 0;
-	unsigned int yCounter = 0;
-	unsigned int fontsz   = 8;
+    unsigned int mcX      = initPos;
+    unsigned int mcY      = yPos;
+    unsigned int xCounter = 0;
+    unsigned int yCounter = 0;
+    unsigned int fontsz   = 8;
 
 	for(unsigned int t = 0; t < 128; t++)
 	{
