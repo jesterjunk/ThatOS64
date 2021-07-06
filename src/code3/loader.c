@@ -2,6 +2,7 @@
 // https://github.com/ThatOSDev/ThatOS64
 
 #include "stdint.h"
+#include "tosdfont.h"
 
              // ARGB             
 #define ORANGE 0xffffa500
@@ -12,6 +13,10 @@
 #define GRAY   0xff888888
 #define WHITE  0xffffffff
 #define BLACK  0xff000000
+
+#define CHARBITS  128
+#define FONTSIZE8 8
+#define ZERO      0x0
 
 typedef struct GRAPHICS_COLOR_PIXEL
 {
@@ -33,6 +38,7 @@ typedef struct BLOCKINFO
 
 GRAPHICS_COLOR_PIXEL* SetGraphicsColor(uint32_t color);
 void CreateBufferFilledBox(uint32_t xPos, uint32_t yPos, uint32_t w, uint32_t h, GRAPHICS_COLOR_PIXEL* gc, BLOCKINFO* bli);
+void GetCharacter(uint32_t character, uint32_t xPos, uint32_t yPos, BLOCKINFO* block);
 
 void main(int32_t argc, BLOCKINFO* bi)
 {
@@ -41,11 +47,10 @@ void main(int32_t argc, BLOCKINFO* bi)
 	if(biStruct->MagicNumber == 31337)
 	{
 		GRAPHICS_COLOR_PIXEL* GraphicsColor = SetGraphicsColor(ORANGE);
-		CreateBufferFilledBox(1, 1, 150, 150, GraphicsColor, biStruct);
-	} else {
-		GRAPHICS_COLOR_PIXEL* GraphicsColor = SetGraphicsColor(GREEN);
-		CreateBufferFilledBox(1, 1, 150, 150, GraphicsColor, biStruct);
+		CreateBufferFilledBox(0, 0, 150, 150, GraphicsColor, biStruct);
 	}
+	
+	GetCharacter(0, 0, 0, biStruct);
 	
 	while(1){}
 }
@@ -67,12 +72,57 @@ void CreateBufferFilledBox(uint32_t xPos, uint32_t yPos, uint32_t w, uint32_t h,
     uint32_t width  = xPos + w;
     uint32_t height = yPos + h;
 
-    for(y = yPos; y <= height; y++)
+    for(y = yPos; y < height; y++)
     {
-        for(x = xPos; x <= width; x++)
+        for(x = xPos; x < width; x++)
         {
             *(x + (y * bli->PixelsPerScanLine) + (uint32_t*)(bli->BaseAddress)) = *(uint32_t*)gc;
         }
     }
+}
+
+void GetCharacter(uint32_t character, uint32_t xPos, uint32_t yPos, BLOCKINFO* block)
+{
+    uint32_t initPos = xPos;
+	uint32_t mcX = initPos;
+	uint32_t mcY = yPos;
+	uint32_t xCounter = ZERO;
+	uint32_t yCounter = ZERO;
+	uint32_t fontsz   = FONTSIZE8;
+
+	for(uint32_t t = (character * CHARBITS); t < ((character * CHARBITS) + CHARBITS); t++)
+	{
+		if(xCounter > 7)
+		{
+			xCounter = ZERO;
+			mcY += fontsz;
+			mcX = initPos;
+			yCounter++;
+			if(yCounter > 15)
+			{
+				yCounter = ZERO;
+				mcY += fontsz;
+			}
+		}
+
+		switch(asciifont[t])
+		{
+			case 0:
+			{
+				break;
+			}
+			case 1:
+			{
+				CreateBufferFilledBox(mcX, mcY, fontsz, fontsz, SetGraphicsColor(WHITE), block);
+				break;
+			}
+			default:
+			{
+				break;
+			}
+		}
+		mcX += fontsz;
+		xCounter++;
+	}
 }
 
