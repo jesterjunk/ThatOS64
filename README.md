@@ -21,8 +21,7 @@
 # BUILD INSTRCUTIONS  
 [https://github.com/ThatOSDev/ThatOS64/tree/master/BUILD.md](https://github.com/ThatOSDev/ThatOS64/tree/master/BUILD.md)  
 
-# SOCIAL MEDIA LINKS
-**DISCORD** : https://discord.gg/6gxEF3QCtB  
+# SOCIAL MEDIA LINK
 **YOUTUBE** : https://www.youtube.com/channel/UCouyC9D6WFBwc24sqdkS-jw  
 
 # READ THIS !!!
