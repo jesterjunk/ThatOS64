@@ -4,7 +4,7 @@
 #define ORANGE 0xffffa500
 #define CYAN   0xff00ffff
 
-unsigned int asciifont[32768] = {
+unsigned int asciifont[128] = {
 
 1,0,0,0,0,0,0,0, // 000  --  NUL 
 1,0,0,1,0,0,0,0,
