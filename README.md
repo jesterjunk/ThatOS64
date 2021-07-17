@@ -46,6 +46,7 @@
 More Tuts Coming soon... ( **NOTE : The order of this list is subject to change** )  
 
 	* Memap ( Memory Manager )  
+	* GDT / IDT
 	* BMP / TGA Image Loading  
 	* PCI  
 	* AHCI  
