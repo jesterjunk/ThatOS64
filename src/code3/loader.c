@@ -1,6 +1,8 @@
 // Operating System from Scratch Tutorials - ThatOSDev ( 2021 )
 // https://github.com/ThatOSDev/ThatOS64
 
+#define BITS8   7
+#define BITS16 15
                   // A R G B             
 #define ORANGE     0xffffa500
 #define DARKORANGE 0xffaf5500
@@ -83,7 +85,7 @@ unsigned char asciifont[256] = {
 	unsigned int temp = a;
 	for(int fc = character; fc < (character + 16); fc++)
 	{
-		for(int t = 7; t >= 0; t--)
+		for(int t = BITS16; t >= 0; t--)
 		{
 			if(asciifont[fc] & (1 << t))
 			{
