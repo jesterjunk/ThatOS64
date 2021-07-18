@@ -38,9 +38,8 @@ typedef struct BLOCKINFO
 } BLOCKINFO;
 
 void Print(BLOCKINFO* bli, char* str);
-void PutCharacter(BLOCKINFO* bli, unsigned char chr, const unsigned int a, const unsigned int b, const unsigned int FontSize, unsigned int c);
-void MakeSizedPixel(BLOCKINFO* bli, const unsigned int a, const unsigned int b, const unsigned int f);
-void MakeRectangle(BLOCKINFO* bli, unsigned int a, unsigned int b, unsigned int w, unsigned int h, unsigned int c);
+void PutCharacter(BLOCKINFO* bli, unsigned char chr, const int a, const int b, const unsigned int FontSize, unsigned int c);
+void MakeRectangle(BLOCKINFO* bli, int a, int b, int w, int h, unsigned int c);
 
 void main(BLOCKINFO* bi)
 {
@@ -56,7 +55,7 @@ void Print(BLOCKINFO* bli, char* str)
 	PutCharacter(bli, 2, 10, 200, 4, GREEN);
 }
 
-void PutCharacter(BLOCKINFO* bli, unsigned char chr, const unsigned int a, const unsigned int b, const unsigned int FontSize, unsigned int c)
+void PutCharacter(BLOCKINFO* bli, unsigned char chr, const int a, const int b, const unsigned int FontSize, unsigned int c)
 {
 unsigned char asciifont[256] = {
 255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,
@@ -79,13 +78,13 @@ unsigned char asciifont[256] = {
 255,155,155,155,155,155,155,155,155,155,155,155,155,155,155,79,
 255,155,155,155,155,155,155,155,155,155,155,155,155,155,155,54
 };
-    int character = (chr * 16);
-	unsigned int x = a;
-	unsigned int y = b;
-	unsigned int temp = a;
-	for(int fc = character; fc < (character + 16); fc++)
+    unsigned short character = (chr * 16);
+	int x = a;
+	int y = b;
+	int temp = a;
+	for(unsigned short fc = character; fc < (character + 16); fc++)
 	{
-		for(int t = BITS16; t >= 0; t--)
+		for(short t = BITS16; t >= 0; t--)
 		{
 			if(asciifont[fc] & (1 << t))
 			{
@@ -98,14 +97,14 @@ unsigned char asciifont[256] = {
 	}
 }
 
-void MakeRectangle(BLOCKINFO* bli, unsigned int a, unsigned int b, unsigned int w, unsigned int h, unsigned int c)
+void MakeRectangle(BLOCKINFO* bli, int a, int b, int w, int h, unsigned int c)
 {
-	unsigned int width = (w + a);
-	unsigned int height = (h + b);
+	int width = (w + a);
+	int height = (h + b);
 	
-	for(unsigned int y = b; y < height; y++)
+	for(int y = b; y < height; y++)
     {
-        for(unsigned int x = a; x < width; x++)
+        for(int x = a; x < width; x++)
         {
             *(unsigned int*)(x + (y * bli->PixelsPerScanLine) + (unsigned int*)(bli->BaseAddress)) = c;
         }
