@@ -37,6 +37,8 @@ typedef struct BLOCKINFO
 	unsigned long long      MMapDescriptorSize;
 } BLOCKINFO;
 
+//void* memcpy(void* dst, const void* src, unsigned long long size);
+
 void Print(BLOCKINFO* bli, char* str);
 void PutCharacter(BLOCKINFO* bli, unsigned char chr, const int a, const int b, const unsigned int FontSize, unsigned int c);
 void MakeRectangle(BLOCKINFO* bli, int a, int b, int w, int h, unsigned int c);
@@ -48,6 +50,15 @@ void main(BLOCKINFO* bi)
 	
 	while(1){__asm__ ("hlt");}
 }
+
+/*
+void* memcpy(void* dst, const void* src, unsigned long long size)
+{
+    for ( unsigned long long i = 0; i < size; i++ )
+        ((unsigned char*) dst)[i] = ((const unsigned char*) src)[i];
+    return dst;
+}
+*/
 
 void Print(BLOCKINFO* bli, char* str)
 {
@@ -77,7 +88,7 @@ unsigned char asciifont[256] = {
 10,144,208,176,144,155,155,155,155,155,155,155,155,155,155,255,
 255,155,155,155,155,144,208,176,144,155,155,155,155,155,155,8,
 255,155,155,155,155,155,155,155,155,155,155,155,155,155,155,79,
-255,155,155,155,155,155,155,155,155,155,155,155,155,155,155,54
+255,155,155,155,155,155,155,155,155,155,155,155,155,155,155,54,
 
 //255,155,155,155,155,155,155,155,155,155,155,155,155,155,155,54   // Add this line and it all falls apart
 };
@@ -113,6 +124,8 @@ void MakeRectangle(BLOCKINFO* bli, int a, int b, int w, int h, unsigned int c)
         }
     }
 }
+
+// -Wno-unused-variable -ansi -masm=intel -std=c99 -O0 -nostdinc -nostdlib 
 
 // __asm__ __volatile__
 
