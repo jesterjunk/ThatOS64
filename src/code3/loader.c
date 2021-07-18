@@ -36,7 +36,7 @@ typedef struct BLOCKINFO
 } BLOCKINFO;
 
 void Print(BLOCKINFO* bli, char* str);
-void PutCharacter(BLOCKINFO* bli, const unsigned int a, const unsigned int b, const unsigned int FontSize, unsigned int c);
+void PutCharacter(BLOCKINFO* bli, int chr, const unsigned int a, const unsigned int b, const unsigned int FontSize, unsigned int c);
 void MakeSizedPixel(BLOCKINFO* bli, const unsigned int a, const unsigned int b, const unsigned int f);
 void MakeRectangle(BLOCKINFO* bli, unsigned int a, unsigned int b, unsigned int w, unsigned int h, unsigned int c);
 
@@ -50,79 +50,49 @@ void main(BLOCKINFO* bi)
 
 void Print(BLOCKINFO* bli, char* str)
 {
-	PutCharacter(bli, 40, 20, 2, WHITE);
-	PutCharacter(bli, 10, 200, 4, GREEN);
+	PutCharacter(bli, 0, 40, 20, 6, WHITE);
+	PutCharacter(bli, 1, 10, 200, 4, GREEN);
 }
 
-void PutCharacter(BLOCKINFO* bli, const unsigned int a, const unsigned int b, const unsigned int FontSize, unsigned int c)
+void PutCharacter(BLOCKINFO* bli, int chr, const unsigned int a, const unsigned int b, const unsigned int FontSize, unsigned int c)
 {
-//unsigned char asciifont[12160] = {
-
-//256 + 128 = 384
-
 unsigned char asciifont[256] = {
-	
-1,1,1,1,1,1,1,1,
-1,0,0,1,1,0,1,1,
-1,0,0,1,1,0,1,1,
-1,0,0,1,1,0,1,1,
-1,0,0,1,1,0,1,1,
-1,0,0,1,1,0,1,1,
-1,0,0,1,1,0,1,1,
-1,0,0,1,1,0,1,1,
-1,0,0,1,1,0,1,1,
-1,0,0,1,1,0,1,1,
-1,0,0,1,1,0,1,1,
-1,0,0,1,1,0,1,1,
-1,0,0,1,1,0,1,1,
-1,0,0,1,1,0,1,1,
-1,0,0,1,1,0,1,1,
-1,1,1,1,1,1,1,1,
+0,144,208,176,144,0,20,20,20,28,0,4,4,4,7,0,
+0,0,0,126,129,165,129,129,189,153,129,129,126,0,0,0,
+255,155,155,155,155,155,155,155,155,155,155,155,155,155,155,255,
+255,155,155,155,155,155,155,155,155,155,155,155,155,155,155,222,
 
-0,0,0,0,0,0,0,0, // 033  --  !
-0,0,0,0,0,0,0,0,
-0,0,0,1,1,0,0,0,
-0,0,1,1,1,1,0,0,
-0,0,1,1,1,1,0,0,
-0,0,1,1,1,1,0,0,
-0,0,0,1,1,0,0,0,
-0,0,0,1,1,0,0,0,
-0,0,0,1,1,0,0,0,
-0,0,0,0,0,0,0,0,
-0,0,0,1,1,0,0,0,
-0,0,0,1,1,0,0,0,
-0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0
+10,144,208,176,144,155,155,155,155,155,155,155,155,155,155,255,
+255,155,155,155,155,144,208,176,144,155,155,155,155,155,155,8,
+255,155,155,155,155,155,155,155,155,155,155,155,155,155,155,79,
+255,155,155,155,155,155,155,155,155,155,155,155,155,155,155,54,
+
+1,144,208,176,144,155,155,155,155,155,155,155,155,155,155,255,
+255,155,155,155,155,144,208,176,144,155,155,155,155,155,155,5,
+255,155,155,155,155,155,155,155,155,155,155,155,155,155,155,21,
+255,155,155,155,155,155,155,155,155,155,155,155,155,155,155,222,
+
+10,144,208,176,144,155,155,155,155,155,155,155,155,155,155,255,
+255,155,155,155,155,144,208,176,144,155,155,155,155,155,155,8,
+255,155,155,155,155,155,155,155,155,155,155,155,155,155,155,79,
+255,155,155,155,155,155,155,155,155,155,155,155,155,155,155,54
 };
-
+    int character = (chr * 16);
 	unsigned int x = a;
 	unsigned int y = b;
 	unsigned int temp = a;
-	unsigned int xPos = 0;
-	for(unsigned int fc = 0; fc < 128; fc++)
+	for(int fc = character; fc < (character + 16); fc++)
 	{
-		switch(asciifont[fc])
+		for(int t = 7; t >= 0; t--)
 		{
-			case 0:
-			{
-				break;
-			}
-			case 1:
+			if(asciifont[fc] & (1 << t))
 			{
 				MakeRectangle(bli, x, y, FontSize, FontSize, c);
-				break;
 			}
+			x += FontSize;
 		}
-		x += FontSize;
-		xPos++;
-		if(xPos > 7)
-		{
-			xPos = 0;
-			x = temp;
-			y += FontSize;
-		}
+		x = temp;
+		y += FontSize;
 	}
 }
 
@@ -141,3 +111,36 @@ void MakeRectangle(BLOCKINFO* bli, unsigned int a, unsigned int b, unsigned int 
 }
 
 // __asm__ __volatile__
+
+
+/*   // PSEUDO EXAMPLE
+
+	255 = 11111111  ( 255 ---> ff ---> 11111111 )
+	155 = 10011011  ( 155 ---> 9b ---> 10011011 )
+	155 = 10011011
+	155 = 10011011
+	155 = 10011011
+	155 = 10011011
+	155 = 10011011
+	155 = 10011011
+	155 = 10011011
+	155 = 10011011
+	155 = 10011011
+	155 = 10011011
+	155 = 10011011
+	155 = 10011011
+	155 = 10011011
+	255 = 11111111
+
+    
+	for(int t = 7; t >= 0; t--)
+    {
+      	if(155 & (1<<t))
+        {
+            Bit number is SET
+        } else
+        {
+            Bit number is not SET
+        }
+     }
+*/
