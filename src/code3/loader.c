@@ -12,26 +12,6 @@
 #define WHITE      0xffffffff
 #define BLACK      0xff000000
 
-unsigned int asciifont[128] = {
-
-1,1,1,1,1,1,1,1, // 000  --  NUL 
-1,0,0,1,1,0,1,1,
-1,0,0,1,1,0,1,1,
-1,0,0,1,1,0,1,1,
-1,0,0,1,1,0,1,1,
-1,0,0,1,1,0,1,1,
-1,0,0,1,1,0,1,1,
-1,0,0,1,1,0,1,1,
-1,0,0,1,1,0,1,1,
-1,0,0,1,1,0,1,1,
-1,0,0,1,1,0,1,1,
-1,0,0,1,1,0,1,1,
-1,0,0,1,1,0,1,1,
-1,0,0,1,1,0,1,1,
-1,0,0,1,1,0,1,1,
-1,1,1,1,1,1,1,1
-};
-
 // From the UEFI PDF Page 170
 typedef struct EFI_MEMORY_DESCRIPTOR
 {
@@ -56,33 +36,74 @@ typedef struct BLOCKINFO
 } BLOCKINFO;
 
 void Print(BLOCKINFO* bli, char* str);
-void PutCharacter(BLOCKINFO* bli, unsigned int a, unsigned int b, unsigned int FontSize);
+void PutCharacter(BLOCKINFO* bli, const unsigned int a, const unsigned int b, const unsigned int FontSize, unsigned int c);
 void MakeSizedPixel(BLOCKINFO* bli, const unsigned int a, const unsigned int b, const unsigned int f);
 void MakeRectangle(BLOCKINFO* bli, unsigned int a, unsigned int b, unsigned int w, unsigned int h, unsigned int c);
 
 void main(BLOCKINFO* bi)
 {
-    MakeRectangle(bi, 1, 1, 100, 100, DARKORANGE);
-	// MakeSizedPixel(bi, 1, 1, 10);
-	//Print(bi, "NA");
+    MakeRectangle(bi, 1, 1, 80, 90, DARKORANGE);
+	Print(bi, "NA");
 	
 	while(1){__asm__ ("hlt");}
 }
 
 void Print(BLOCKINFO* bli, char* str)
 {
-	PutCharacter(bli, 0, 0, 5);
+	PutCharacter(bli, 40, 20, 2, WHITE);
+	PutCharacter(bli, 10, 200, 4, GREEN);
 }
 
-void PutCharacter(BLOCKINFO* bli, unsigned int a, unsigned int b, unsigned int FontSize)
+void PutCharacter(BLOCKINFO* bli, const unsigned int a, const unsigned int b, const unsigned int FontSize, unsigned int c)
 {
+//unsigned char asciifont[12160] = {
+
+//256 + 128 = 384
+
+unsigned char asciifont[256] = {
+	
+1,1,1,1,1,1,1,1,
+1,0,0,1,1,0,1,1,
+1,0,0,1,1,0,1,1,
+1,0,0,1,1,0,1,1,
+1,0,0,1,1,0,1,1,
+1,0,0,1,1,0,1,1,
+1,0,0,1,1,0,1,1,
+1,0,0,1,1,0,1,1,
+1,0,0,1,1,0,1,1,
+1,0,0,1,1,0,1,1,
+1,0,0,1,1,0,1,1,
+1,0,0,1,1,0,1,1,
+1,0,0,1,1,0,1,1,
+1,0,0,1,1,0,1,1,
+1,0,0,1,1,0,1,1,
+1,1,1,1,1,1,1,1,
+
+0,0,0,0,0,0,0,0, // 033  --  !
+0,0,0,0,0,0,0,0,
+0,0,0,1,1,0,0,0,
+0,0,1,1,1,1,0,0,
+0,0,1,1,1,1,0,0,
+0,0,1,1,1,1,0,0,
+0,0,0,1,1,0,0,0,
+0,0,0,1,1,0,0,0,
+0,0,0,1,1,0,0,0,
+0,0,0,0,0,0,0,0,
+0,0,0,1,1,0,0,0,
+0,0,0,1,1,0,0,0,
+0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0
+};
+
 	unsigned int x = a;
 	unsigned int y = b;
-	unsigned int temp = x;
+	unsigned int temp = a;
+	unsigned int xPos = 0;
 	for(unsigned int fc = 0; fc < 128; fc++)
 	{
-		unsigned int asci = asciifont[fc];
-		switch(asci)
+		switch(asciifont[fc])
 		{
 			case 0:
 			{
@@ -90,31 +111,19 @@ void PutCharacter(BLOCKINFO* bli, unsigned int a, unsigned int b, unsigned int F
 			}
 			case 1:
 			{
-				MakeSizedPixel(bli, x, y, 5);
+				MakeRectangle(bli, x, y, FontSize, FontSize, c);
 				break;
 			}
 		}
 		x += FontSize;
-		if(x > (FontSize * 7))
+		xPos++;
+		if(xPos > 7)
 		{
+			xPos = 0;
 			x = temp;
 			y += FontSize;
 		}
 	}
-}
-
-void MakeSizedPixel(BLOCKINFO* bli, const unsigned int a, const unsigned int b, const unsigned int f)
-{
-	unsigned int fs1 = f + a;
-	unsigned int fs2 = f + b;
-
-	for(unsigned int y = b; y < fs2; y++)
-    {
-        for(unsigned int x = a; x < fs1; x++)
-        {
-            *(unsigned int*)(x + (y * bli->PixelsPerScanLine) + (unsigned int*)(bli->BaseAddress)) = CYAN;
-        }
-    }
 }
 
 void MakeRectangle(BLOCKINFO* bli, unsigned int a, unsigned int b, unsigned int w, unsigned int h, unsigned int c)
