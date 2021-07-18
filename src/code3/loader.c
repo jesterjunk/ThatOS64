@@ -36,7 +36,7 @@ typedef struct BLOCKINFO
 } BLOCKINFO;
 
 void Print(BLOCKINFO* bli, char* str);
-void PutCharacter(BLOCKINFO* bli, int chr, const unsigned int a, const unsigned int b, const unsigned int FontSize, unsigned int c);
+void PutCharacter(BLOCKINFO* bli, unsigned char chr, const unsigned int a, const unsigned int b, const unsigned int FontSize, unsigned int c);
 void MakeSizedPixel(BLOCKINFO* bli, const unsigned int a, const unsigned int b, const unsigned int f);
 void MakeRectangle(BLOCKINFO* bli, unsigned int a, unsigned int b, unsigned int w, unsigned int h, unsigned int c);
 
@@ -50,17 +50,17 @@ void main(BLOCKINFO* bi)
 
 void Print(BLOCKINFO* bli, char* str)
 {
-	PutCharacter(bli, 0, 40, 20, 6, WHITE);
-	PutCharacter(bli, 1, 10, 200, 4, GREEN);
+	PutCharacter(bli, 1, 0, 0, 6, WHITE);
+	PutCharacter(bli, 2, 10, 200, 4, GREEN);
 }
 
-void PutCharacter(BLOCKINFO* bli, int chr, const unsigned int a, const unsigned int b, const unsigned int FontSize, unsigned int c)
+void PutCharacter(BLOCKINFO* bli, unsigned char chr, const unsigned int a, const unsigned int b, const unsigned int FontSize, unsigned int c)
 {
 unsigned char asciifont[256] = {
+255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,
 0,144,208,176,144,0,20,20,20,28,0,4,4,4,7,0,
 0,0,0,126,129,165,129,129,189,153,129,129,126,0,0,0,
 255,155,155,155,155,155,155,155,155,155,155,155,155,155,155,255,
-255,155,155,155,155,155,155,155,155,155,155,155,155,155,155,222,
 
 10,144,208,176,144,155,155,155,155,155,155,155,155,155,155,255,
 255,155,155,155,155,144,208,176,144,155,155,155,155,155,155,8,
