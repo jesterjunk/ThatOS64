@@ -57,6 +57,7 @@ void Print(BLOCKINFO* bli, char* str)
 
 void PutCharacter(BLOCKINFO* bli, unsigned char chr, const int a, const int b, const unsigned int FontSize, unsigned int c)
 {
+//unsigned char asciifont[272] = {  // You uncomment this line and comment out the next line and it all falls apart
 unsigned char asciifont[256] = {
 255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,
 0,144,208,176,144,0,20,20,20,28,0,4,4,4,7,0,
@@ -77,6 +78,8 @@ unsigned char asciifont[256] = {
 255,155,155,155,155,144,208,176,144,155,155,155,155,155,155,8,
 255,155,155,155,155,155,155,155,155,155,155,155,155,155,155,79,
 255,155,155,155,155,155,155,155,155,155,155,155,155,155,155,54
+
+//255,155,155,155,155,155,155,155,155,155,155,155,155,155,155,54   // Add this line and it all falls apart
 };
     unsigned short character = (chr * 16);
 	int x = a;
