@@ -1,3 +1,3 @@
-gcc -Wall -Werror -m64 -ffreestanding -Wl,--oformat=binary -e main -c loader.c -o loader.bin
+gcc -Wall -Werror -Wno-unused-variable -m64 -Wl,--oformat=binary -e tmain -c loader.c -o loader.bin
 
 pause
