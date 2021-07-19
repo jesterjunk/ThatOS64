@@ -40,14 +40,14 @@ typedef struct BLOCKINFO
 
 //void* memcpy(void* dst, const void* src, unsigned long long size);
 
-void Print(BLOCKINFO* bli, char* str);
+void Print(BLOCKINFO* bli, const int x, const int y, const unsigned int FontSize, unsigned int c, char* str);
 void PutCharacter(BLOCKINFO* bli, unsigned char chr, const int a, const int b, const unsigned int FontSize, unsigned int c);
 void MakeRectangle(BLOCKINFO* bli, int a, int b, int w, int h, unsigned int c);
 
 void tmain(BLOCKINFO* bi)
 {
     MakeRectangle(bi, 1, 1, 80, 90, DARKORANGE);
-	Print(bi, "NA");
+	Print(bi, 20, 20, 1, WHITE, "WE HAVE TXT");
 	
 	while(1){__asm__ ("hlt");}
 }
@@ -61,20 +61,35 @@ void* memcpy(void* dst, const void* src, unsigned long long size)
 }
 */
 
-void Print(BLOCKINFO* bli, char* str)
+void Print(BLOCKINFO* bli, const int a, const int b, const unsigned int FontSize, unsigned int c, char* str)
 {
-	PutCharacter(bli, 33, 10, 10, 4, WHITE);   // W
-	PutCharacter(bli, 15, 40, 10, 4, WHITE);   // E
-	PutCharacter(bli, 63, 70, 10, 4, WHITE);   // SPACE
-	PutCharacter(bli, 18, 100, 10, 4, WHITE);  // H
-	PutCharacter(bli, 11, 130, 10, 4, WHITE);  // A
-	PutCharacter(bli, 32, 160, 10, 4, GREEN);  // V
-	PutCharacter(bli, 15, 190, 10, 4, WHITE);  // E
-	PutCharacter(bli, 63, 210, 10, 4, WHITE);  // SPACE
-	PutCharacter(bli, 30, 240, 10, 4, WHITE);  // T
-	PutCharacter(bli, 15, 270, 10, 4, WHITE);  // E
-	PutCharacter(bli, 34, 300, 10, 4, DARKORANGE);  // X
-	PutCharacter(bli, 30, 330, 10, 4, WHITE);  // T
+	// At this time, STR does nothing yet.
+	int x = a;
+	int y = b;
+	int fs = ((FontSize * FontSize) + (FontSize * FontSize) + 6);  // This is an experiment
+	PutCharacter(bli, 33, x, y, FontSize, c);  // W
+	x+=fs;
+	PutCharacter(bli, 15, x, y, FontSize, c);  // E
+	x+=fs;
+	PutCharacter(bli, 63, x, y, FontSize, c);  // SPACE
+	x+=fs;
+	PutCharacter(bli, 18, x, y, FontSize, c);  // H
+	x+=fs;
+	PutCharacter(bli, 11, x, y, FontSize, c);  // A
+	x+=fs;
+	PutCharacter(bli, 32, x, y, FontSize, c);  // V
+	x+=fs;
+	PutCharacter(bli, 15, x, y, FontSize, c);  // E
+	x+=fs;
+	PutCharacter(bli, 63, x, y, FontSize, c);  // SPACE
+	x+=fs;
+	PutCharacter(bli, 30, x, y, FontSize, c);  // T
+	x+=fs;
+	PutCharacter(bli, 15, x, y, FontSize, c);  // E
+	x+=fs;
+	PutCharacter(bli, 34, x, y, FontSize, c);  // X
+	x+=fs;
+	PutCharacter(bli, 30, x, y, FontSize, c);  // T
 }
 
 void PutCharacter(BLOCKINFO* bli, unsigned char chr, const int a, const int b, const unsigned int FontSize, unsigned int c)
