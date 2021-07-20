@@ -50,7 +50,7 @@ void MakeRectangle(BLOCKINFO* bli, int a, int b, int w, int h, unsigned int c);
 void tmain(BLOCKINFO* bi)
 {
     MakeRectangle(bi, 1, 1, 80, 90, DARKORANGE);
-	Print(bi, bi->ScreenWidth, 1, 1, 3, WHITE, "W");
+	Print(bi, bi->ScreenWidth, 1, 1, 3, WHITE, "We");
 	
 	while(1){__asm__ ("hlt");}
 }
@@ -62,8 +62,6 @@ unsigned long long strlen(const char* str)
 	while (*strCount++);
 	return strCount - str - 1;
 }
-
-
 
 void Print(BLOCKINFO* bli, const int screenWidth, const int a, const int b, const unsigned int FontSize, unsigned int c, const char* str)
 {
