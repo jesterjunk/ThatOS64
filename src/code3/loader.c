@@ -50,7 +50,7 @@ void MakeRectangle(BLOCKINFO* bli, int a, int b, int w, int h, unsigned int c);
 void tmain(BLOCKINFO* bi)
 {
     MakeRectangle(bi, 1, 1, 80, 90, DARKORANGE);
-	Print(bi, bi->ScreenWidth, 1, 1, 3, WHITE, "WE");
+	Print(bi, bi->ScreenWidth, 1, 1, 3, WHITE, "W");
 	
 	while(1){__asm__ ("hlt");}
 }
@@ -63,19 +63,38 @@ unsigned long long strlen(const char* str)
 	return strCount - str - 1;
 }
 
+
+
 void Print(BLOCKINFO* bli, const int screenWidth, const int a, const int b, const unsigned int FontSize, unsigned int c, const char* str)
 {
+	#define DEBUGMODE 1
+	unsigned long long lngth = strlen(str);
 	int x = a;
 	int y = b;
 	int fs = (((FontSize * FontSize) + (FontSize * FontSize) + 6) + HSPACE);
-	for(unsigned long long t = 0; t < 127; t++)
+	if(DEBUGMODE)
 	{
-		PutCharacter(bli, t, x, y, FontSize, c);
-		x+=fs;
-		if(x > (screenWidth - fs))
+		for(unsigned long long t = 0; t < 127; t++)
 		{
-			x = a;
-			y += (fs * 2);
+			PutCharacter(bli, t, x, y, FontSize, c);
+			x+=fs;
+			if(x > (screenWidth - fs))
+			{
+				x = a;
+				y += (fs * 2);
+			}
+		}
+	} else {
+		for(unsigned long long t = 0; t < lngth; t++)
+		{
+			int l = str[t];
+			PutCharacter(bli, l, x, y, FontSize, c);
+			x+=fs;
+			if(x > (screenWidth - fs))
+			{
+				x = a;
+				y += (fs * 2);
+			}
 		}
 	}
 }
