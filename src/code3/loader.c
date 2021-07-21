@@ -42,63 +42,45 @@ typedef struct BLOCKINFO
 	unsigned long long      MMapDescriptorSize;
 } BLOCKINFO;
 
-unsigned long long strlen(const char* str);
+unsigned long long strlen(char* str);
 
-void Print(BLOCKINFO* bli, const int screenWidth, const int a, const int b, const unsigned int FontSize, unsigned int c, const char* str);
-void PutCharacter(BLOCKINFO* bli, unsigned int chr, const int a, const int b, const unsigned int FontSize, unsigned int c);
+void Print(BLOCKINFO* bli, const int screenWidth, const int a, const int b, const unsigned int FontSize, unsigned int c, char* st);
+void PutCharacter(BLOCKINFO* bli, unsigned short chrNum, const int a, const int b, const unsigned int FontSize, unsigned int c);
 void MakeRectangle(BLOCKINFO* bli, int a, int b, int w, int h, unsigned int c);
 
 void tmain(BLOCKINFO* bi)
 {
-    MakeRectangle(bi, 1, 1, 80, 90, BADORANGE);
-	Print(bi, bi->ScreenWidth, 1, 1, 2, BADCYAN, "We");
+	Print(bi, bi->ScreenWidth, 1, 1, 2, BADCYAN, "AAAd");
 	
 	while(1){__asm__ ("hlt");}
 }
 
-unsigned long long strlen(const char* str)
+unsigned long long strlen(char* str)
 {
-	const char* strCount = str;
+	char* strCount = str;
 
 	while (*strCount++);
 	return strCount - str - 1;
 }
 
-void Print(BLOCKINFO* bli, const int screenWidth, const int a, const int b, const unsigned int FontSize, unsigned int c, const char* str)
+void Print(BLOCKINFO* bli, const int screenWidth, const int a, const int b, const unsigned int FontSize, unsigned int c, char* st)
 {
-	#define DEBUGMODE 1
-	unsigned long long lngth = strlen(str);
 	int x = a;
 	int y = b;
-	int fs = (((FontSize * FontSize) + (FontSize * FontSize) + 6) + HSPACE);
-	if(DEBUGMODE)
+    unsigned int fs = (((FontSize * FontSize) + (FontSize * FontSize) + 6) + HSPACE);
+	for(unsigned long long t = 0; t < 128; t++)
 	{
-		for(unsigned long long t = 0; t < 128; t++)
+		PutCharacter(bli, t, x, y, FontSize, c);
+		x+=fs;
+		if(x > (screenWidth - fs))
 		{
-			PutCharacter(bli, t, x, y, FontSize, c);
-			x+=fs;
-			if(x > (screenWidth - fs))
-			{
-				x = a;
-				y += (fs * 2);
-			}
-		}
-	} else {
-		for(unsigned long long t = 0; t < lngth; t++)
-		{
-			int l = str[t];
-			PutCharacter(bli, l, x, y, FontSize, c);
-			x+=fs;
-			if(x > (screenWidth - fs))
-			{
-				x = a;
-				y += (fs * 2);
-			}
+			x = a;
+			y += (fs * 2);
 		}
 	}
 }
 
-void PutCharacter(BLOCKINFO* bli, unsigned int chr, const int a, const int b, const unsigned int FontSize, unsigned int c)
+void PutCharacter(BLOCKINFO* bli, unsigned short chrNum, const int a, const int b, const unsigned int FontSize, unsigned int c)
 {
 	// I'm not sure why, but splitting this up into groups of arrays works.
 	// My guess is, this is a stack issue, and splitting it up solves the stack issue.
@@ -277,17 +259,22 @@ unsigned int asciifont8[64] = {
 118,3690987520,0,0,                          // 126  --  ~
 16,946652870,3334929920,0                    // 127  --  Delete
 };
-    char togglearray = 0;
-         if(chr >  15 && chr <   32){togglearray = 1; chr -=  16;}
-	else if(chr >  31 && chr <   48){togglearray = 2; chr -=  32;}
-	else if(chr >  47 && chr <   64){togglearray = 3; chr -=  48;}
-	else if(chr >  63 && chr <   80){togglearray = 4; chr -=  64;}
-	else if(chr >  79 && chr <   96){togglearray = 5; chr -=  80;}
-	else if(chr >  95 && chr <  112){togglearray = 6; chr -=  96;}
-	else if(chr > 111 && chr <  128){togglearray = 7; chr -= 112;}
-	else if(chr > 127){togglearray = 7; chr = 15;}
 
-    unsigned long character = (chr * 4);
+unsigned int asciifont9[4] = {
+45733,15462,1719427168,1610612736,           // 128 ^
+};
+
+    char togglearray = 0;
+         if(chrNum >  15 && chrNum <   32){togglearray = 1; chrNum -=  16;}
+	else if(chrNum >  31 && chrNum <   48){togglearray = 2; chrNum -=  32;}
+	else if(chrNum >  47 && chrNum <   64){togglearray = 3; chrNum -=  48;}
+	else if(chrNum >  63 && chrNum <   80){togglearray = 4; chrNum -=  64;}
+	else if(chrNum >  79 && chrNum <   96){togglearray = 5; chrNum -=  80;}
+	else if(chrNum >  95 && chrNum <  112){togglearray = 6; chrNum -=  96;}
+	else if(chrNum > 111 && chrNum <  128){togglearray = 7; chrNum -= 112;}
+	else if(chrNum > 127){chrNum = 0;}
+
+    unsigned long character = (chrNum * 4);
 	int x = a;
 	int y = b;
 	int temp = a;
@@ -337,6 +324,11 @@ unsigned int asciifont8[64] = {
 				{
 					MakeRectangle(bli, x, y, FontSize, FontSize, c);
 				}
+			} else {
+				if(asciifont9[fc] & (1 << t))
+				{
+					MakeRectangle(bli, x, y, FontSize, FontSize, c);
+				}
 			}
 			x += FontSize;
 			xPos++;
@@ -364,6 +356,19 @@ void MakeRectangle(BLOCKINFO* bli, int a, int b, int w, int h, unsigned int c)
     }
 }
 
+	/*
+	for(unsigned long long t = 0; t < 128; t++)
+	{
+		PutCharacter(bli, t, x, y, FontSize, c);
+		x+=fs;
+		if(x > (screenWidth - fs))
+		{
+			x = a;
+			y += (fs * 2);
+		}
+	}
+	*/
+	
 // -Wno-unused-variable -ansi -masm=intel -std=c99 -O0 -nostdinc -nostdlib -ffreestanding
 
 // __asm__ __volatile__
@@ -386,4 +391,43 @@ void MakeRectangle(BLOCKINFO* bli, int a, int b, int w, int h, unsigned int c)
             Bit number is not SET
         }
      }
+*/
+/*
+	int x = a;
+	int y = b;
+	long lngth = strlen(&q);
+
+	for(long t = 0; t < lngth; t++)
+	{
+		MakeRectangle(bli, x, 1, 20, 40, GREEN);
+		x+=24;
+	}
+	x = a;
+	for(long t = 0; t < c; t++)
+	{
+		char l = q;
+		PutCharacter(bli, l, x, y, FontSize, c);
+		x+=fs;
+		if(x > (screenWidth - fs))
+		{
+			x = a;
+			y += (fs * 2);
+		}
+	}
+*/
+
+/*
+	unsigned int fs = (((FontSize * FontSize) + (FontSize * FontSize) + 6) + HSPACE);
+	int i = 0;
+	int x = 1;
+	while(st[i] != '\0')
+	{
+		PutCharacter(bli, st[i], x, 6, FontSize, c);
+		i++;
+		if(i > 16){break;}
+		x+=fs;
+	}
+	
+	MakeRectangle(bli, 1, 300, 20, 40, ORANGE);
+	PutCharacter(bli, i, 3, 303, FontSize, c);
 */
