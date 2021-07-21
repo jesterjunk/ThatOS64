@@ -44,13 +44,13 @@ typedef struct BLOCKINFO
 
 unsigned long long strlen(char* str);
 
-void Print(BLOCKINFO* bli, const int screenWidth, const int a, const int b, const unsigned int FontSize, unsigned int c, char* st);
+void Print(BLOCKINFO* bli, char* str, const int screenWidth, const int a, const int b, const unsigned int FontSize, unsigned int c);
 void PutCharacter(BLOCKINFO* bli, unsigned short chrNum, const int a, const int b, const unsigned int FontSize, unsigned int c);
 void MakeRectangle(BLOCKINFO* bli, int a, int b, int w, int h, unsigned int c);
 
 void tmain(BLOCKINFO* bi)
 {
-	Print(bi, bi->ScreenWidth, 1, 1, 2, BADCYAN, "AAAd");
+	Print(bi, (char*)"FuN", bi->ScreenWidth, 1, 1, 2, BADCYAN); // 70 117  78
 	
 	while(1){__asm__ ("hlt");}
 }
@@ -63,21 +63,20 @@ unsigned long long strlen(char* str)
 	return strCount - str - 1;
 }
 
-void Print(BLOCKINFO* bli, const int screenWidth, const int a, const int b, const unsigned int FontSize, unsigned int c, char* st)
+void Print(BLOCKINFO* bli, char* str, const int screenWidth, const int a, const int b, const unsigned int FontSize, unsigned int c)
 {
-	int x = a;
-	int y = b;
-    unsigned int fs = (((FontSize * FontSize) + (FontSize * FontSize) + 6) + HSPACE);
-	for(unsigned long long t = 0; t < 128; t++)
-	{
-		PutCharacter(bli, t, x, y, FontSize, c);
-		x+=fs;
-		if(x > (screenWidth - fs))
-		{
-			x = a;
-			y += (fs * 2);
-		}
-	}
+	// THIS IS NOT WORKING. NOT SURE WHY.
+	// COMPARE TO main2.c in the testcode folder.
+	char* nrStr = str;   // F = 70, u = 117,  N = 78
+    int i = 0;
+	unsigned short l = nrStr[i];
+	PutCharacter(bli, l, 1, 1, FontSize, c);
+	i++;
+	l = nrStr[i];
+	PutCharacter(bli, l, 20, 1, FontSize, c);
+	i++;
+	l = nrStr[i];
+	PutCharacter(bli, l, 40, 1, FontSize, c);
 }
 
 void PutCharacter(BLOCKINFO* bli, unsigned short chrNum, const int a, const int b, const unsigned int FontSize, unsigned int c)
@@ -356,6 +355,21 @@ void MakeRectangle(BLOCKINFO* bli, int a, int b, int w, int h, unsigned int c)
     }
 }
 
+/*
+	int x = a;
+	int y = b;
+    unsigned int fs = (((FontSize * FontSize) + (FontSize * FontSize) + 6) + HSPACE);
+	for(unsigned long long t = 0; t < 128; t++)
+	{
+		PutCharacter(bli, t, x, y, FontSize, c);
+		x+=fs;
+		if(x > (screenWidth - fs))
+		{
+			x = a;
+			y += (fs * 2);
+		}
+	}
+*/
 	/*
 	for(unsigned long long t = 0; t < 128; t++)
 	{
