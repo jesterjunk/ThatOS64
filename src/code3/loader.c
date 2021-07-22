@@ -43,24 +43,21 @@ typedef struct BLOCKINFO
 } BLOCKINFO;
 
 unsigned long long strlen(char* str);
+void* memchr(const void* string, int chr, unsigned long long numberOfBytes);
+void* memmove(void* destination, const void* source, unsigned long long numberOfBytes);
+void *memset(void* str, int chr, unsigned long long numberOfBytes);
+int memcmp(const void* src1, const void* src2, unsigned long long numberOfBytes);
+void* memcpy(void* dst, const void* src, unsigned long long size);
 
 void Print(BLOCKINFO* bli, char* str, const int screenWidth, const int a, const int b, const unsigned int FontSize, unsigned int c);
 void PutCharacter(BLOCKINFO* bli, unsigned short chrNum, const int a, const int b, const unsigned int FontSize, unsigned int c);
 void MakeRectangle(BLOCKINFO* bli, int a, int b, int w, int h, unsigned int c);
 
-void tmain(BLOCKINFO* bi)
+void main(BLOCKINFO* bi)
 {
 	Print(bi, "FuN", bi->ScreenWidth, 1, 1, 2, BADCYAN); // 70 117  78
 	
 	while(1){__asm__ ("hlt");}
-}
-
-unsigned long long strlen(char* str)
-{
-	char* strCount = str;
-
-	while (*strCount++);
-	return strCount - str - 1;
 }
 
 void Print(BLOCKINFO* bli, char* str, const int screenWidth, const int a, const int b, const unsigned int FontSize, unsigned int c)
@@ -68,7 +65,7 @@ void Print(BLOCKINFO* bli, char* str, const int screenWidth, const int a, const 
 	// THIS IS NOT WORKING. NOT SURE WHY.
 	// COMPARE TO main2.c in the testcode folder.
 	
-	#define DEBUGME 0    // TOGGLE THIS BETWEEN 0 AND 1
+	#define DEBUGME 1    // TOGGLE THIS BETWEEN 0 AND 1
 	                     // 1 shows the upper code
 						 // 0 shows the lower code
 	if(DEBUGME)
@@ -378,6 +375,81 @@ void MakeRectangle(BLOCKINFO* bli, int a, int b, int w, int h, unsigned int c)
             *(unsigned int*)(x + (y * bli->PixelsPerScanLine) + (unsigned int*)(bli->BaseAddress)) = c;
         }
     }
+}
+
+unsigned long long strlen(char* str)
+{
+	char* strCount = str;
+
+	while (*strCount++);
+	return strCount - str - 1;
+}
+
+void* memcpy(void* dst, const void* src, unsigned long long size)
+{
+    for ( unsigned long long i = 0; i < size; i++ )
+        ((unsigned char*) dst)[i] = ((const unsigned char*) src)[i];
+    return dst;
+}
+
+int memcmp(const void* src1, const void* src2, unsigned long long numberOfBytes)
+{
+  unsigned char const* str1 = src1;
+  unsigned char const* str2 = src2;
+
+  while (numberOfBytes--) {
+    if (*str1 != *str2)
+      return (int)*str1 - (int)*str2;
+    str1++;
+    str2++;
+  }
+
+  return 0;
+}
+
+void *memset(void* str, int chr, unsigned long long numberOfBytes)
+{
+  unsigned char* dest = str;
+
+  while (numberOfBytes--)
+    *dest++ = (unsigned char)chr;
+
+  return str;
+}
+
+void* memmove(void* destination, const void* source, unsigned long long numberOfBytes)
+{
+  unsigned char* dest = destination;
+  unsigned char const* src = source;
+
+  if (dest < src) {
+    while (numberOfBytes--)
+      *dest++ = *src++;
+  } else {
+    dest += numberOfBytes;
+    src += numberOfBytes;
+    while (numberOfBytes--)
+      *--dest = *--src;
+  }
+
+  return destination;
+}
+
+void* memchr(const void* string, int chr, unsigned long long numberOfBytes)
+{
+	unsigned long long   i = 0;
+	unsigned char*       str       = (unsigned char*)string;
+	unsigned char        asciiChar = (unsigned char)chr;
+	while (i < numberOfBytes)
+	{
+		if (*str == asciiChar)
+		{
+			return (str);
+		}
+		str++;
+		i++;
+	}
+	return (void*)0;
 }
 
 /*
