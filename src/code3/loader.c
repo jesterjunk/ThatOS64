@@ -67,17 +67,41 @@ void Print(BLOCKINFO* bli, char* str, const int screenWidth, const int a, const 
 {
 	// THIS IS NOT WORKING. NOT SURE WHY.
 	// COMPARE TO main2.c in the testcode folder.
-	char* nrStr = str;   // F = 70, u = 117,  N = 78
-    int i = 0;
-	unsigned short l = 0;
-    do{
-		l = nrStr[i];
-		i++;
-		if(l == 117) {PutCharacter(bli, 117, 1, 1, FontSize, c);}
-		if(i > 16){break;}
-    } while(l != 0);
-	// This rectangle is our way of saying "Done"
-	MakeRectangle(bli, 1, 200, 20, 40, GREEN);
+	
+	#define DEBUGME 0    // TOGGLE THIS BETWEEN 0 AND 1
+	                     // 1 shows the upper code
+						 // 0 shows the lower code
+	if(DEBUGME)
+	{
+		char* nrStr = str;   // F = 70, u = 117,  N = 78
+		int i = 0;
+		unsigned short l = 0;
+		do{
+			l = nrStr[i];
+			i++;
+			if(l == 117) {PutCharacter(bli, 117, 1, 1, FontSize, c);}
+			if(i > 16){break;}
+		} while(l != 0);
+		// This rectangle is our way of saying "Done"
+		MakeRectangle(bli, 1, 200, 20, 40, GREEN);
+	} else {
+		char* nrStr = str;   // F = 70, u = 117,  N = 78
+		int i = 0;
+		char l = 0;
+		int x = 3;
+		unsigned int fs = (((FontSize * FontSize) + (FontSize * FontSize) + 6) + HSPACE);
+		do{
+			l = nrStr[i];
+			i++;
+			if(l == 117) {PutCharacter(bli, 117, 1, 1, FontSize, c);}
+			PutCharacter(bli, l, x, 50, FontSize, c);
+			x += fs;
+			if(i > 16){break;}
+		} while(l != 0);
+		// This rectangle is our way of saying "Done"
+		MakeRectangle(bli, 1, 200, 20, 40, GREEN);
+		PutCharacter(bli, i, 3, 203, FontSize, c);
+	}
 }
 
 void PutCharacter(BLOCKINFO* bli, unsigned short chrNum, const int a, const int b, const unsigned int FontSize, unsigned int c)
