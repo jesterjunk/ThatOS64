@@ -16,9 +16,10 @@ void print(char* str)
     int i = 0;
     unsigned short l = 0;
     do{
-    l = nrStr[i];
-    i++;
-    if(l == 117) {printf((short unsigned int*)"117\n");}
+		l = nrStr[i];
+		i++;
+		if(l == 117) {printf((short unsigned int*)"117\n");}
+		if(i > 16){break;}
     } while(l != 0);
     printf((short unsigned int*)"Done\n");
 }

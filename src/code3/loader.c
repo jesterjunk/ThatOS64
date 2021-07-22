@@ -50,7 +50,7 @@ void MakeRectangle(BLOCKINFO* bli, int a, int b, int w, int h, unsigned int c);
 
 void tmain(BLOCKINFO* bi)
 {
-	Print(bi, (char*)"FuN", bi->ScreenWidth, 1, 1, 2, BADCYAN); // 70 117  78
+	Print(bi, "FuN", bi->ScreenWidth, 1, 1, 2, BADCYAN); // 70 117  78
 	
 	while(1){__asm__ ("hlt");}
 }
@@ -69,14 +69,15 @@ void Print(BLOCKINFO* bli, char* str, const int screenWidth, const int a, const 
 	// COMPARE TO main2.c in the testcode folder.
 	char* nrStr = str;   // F = 70, u = 117,  N = 78
     int i = 0;
-	unsigned short l = nrStr[i];
-	PutCharacter(bli, l, 1, 1, FontSize, c);
-	i++;
-	l = nrStr[i];
-	PutCharacter(bli, l, 20, 1, FontSize, c);
-	i++;
-	l = nrStr[i];
-	PutCharacter(bli, l, 40, 1, FontSize, c);
+	unsigned short l = 0;
+    do{
+		l = nrStr[i];
+		i++;
+		if(l == 117) {PutCharacter(bli, 117, 1, 1, FontSize, c);}
+		if(i > 16){break;}
+    } while(l != 0);
+	// This rectangle is our way of saying "Done"
+	MakeRectangle(bli, 1, 200, 20, 40, GREEN);
 }
 
 void PutCharacter(BLOCKINFO* bli, unsigned short chrNum, const int a, const int b, const unsigned int FontSize, unsigned int c)
