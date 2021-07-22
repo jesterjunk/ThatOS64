@@ -8,8 +8,8 @@
 
 void main(BLOCKINFO* bi)
 {
-	char st3[] = "Graphics Memery Address : ";
-	Print(bi, st3, bi->ScreenWidth, 20, 10, 1, CYAN);
+	char st3[] = "Graphics Memory Address : ";
+	Print(bi, st3, bi->ScreenWidth, 20, 10, 1, ORANGE);
 	
 	unsigned short int pTr2[13] = {'\0'};
 	pTr2[0] = '0';
