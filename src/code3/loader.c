@@ -68,21 +68,14 @@ void Print(BLOCKINFO* bli, char* str, const int screenWidth, const int a, const 
 	#define DEBUGME 1    // TOGGLE THIS BETWEEN 0 AND 1
 	                     // 1 shows the upper code
 						 // 0 shows the lower code
+						 
+	unsigned char nrStr[4] = {'\0'};
+	memcpy(nrStr, str, 3);   // Was testing to see if this would
+	                         // resolve the problem or not. Apparently not.
+	
 	if(DEBUGME)
 	{
-		char* nrStr = str;   // F = 70, u = 117,  N = 78
-		int i = 0;
-		unsigned short l = 0;
-		do{
-			l = nrStr[i];
-			i++;
-			if(l == 117) {PutCharacter(bli, 117, 1, 1, FontSize, c);}
-			if(i > 16){break;}
-		} while(l != 0);
-		// This rectangle is our way of saying "Done"
-		MakeRectangle(bli, 1, 200, 20, 40, GREEN);
-	} else {
-		char* nrStr = str;   // F = 70, u = 117,  N = 78
+		//char* nrStr = str;   // F = 70, u = 117,  N = 78
 		int i = 0;
 		char l = 0;
 		int x = 3;
@@ -98,6 +91,18 @@ void Print(BLOCKINFO* bli, char* str, const int screenWidth, const int a, const 
 		// This rectangle is our way of saying "Done"
 		MakeRectangle(bli, 1, 200, 20, 40, GREEN);
 		PutCharacter(bli, i, 3, 203, FontSize, c);
+	} else {
+		//char* nrStr = str;   // F = 70, u = 117,  N = 78
+		int i = 0;
+		unsigned short l = 0;
+		do{
+			l = nrStr[i];
+			i++;
+			if(l == 117) {PutCharacter(bli, 117, 1, 1, FontSize, c);}
+			if(i > 16){break;}
+		} while(l != 0);
+		// This rectangle is our way of saying "Done"
+		MakeRectangle(bli, 1, 200, 20, 40, GREEN);
 	}
 }
 
