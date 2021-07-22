@@ -43,66 +43,34 @@ typedef struct BLOCKINFO
 } BLOCKINFO;
 
 unsigned long long strlen(char* str);
-void* memchr(const void* string, int chr, unsigned long long numberOfBytes);
-void* memmove(void* destination, const void* source, unsigned long long numberOfBytes);
-void *memset(void* str, int chr, unsigned long long numberOfBytes);
-int memcmp(const void* src1, const void* src2, unsigned long long numberOfBytes);
-void* memcpy(void* dst, const void* src, unsigned long long size);
 
-void Print(BLOCKINFO* bli, char* str, const int screenWidth, const int a, const int b, const unsigned int FontSize, unsigned int c);
+void Print(BLOCKINFO* bli, char str[], const int screenWidth, const int a, const int b, const unsigned int FontSize, unsigned int c);
 void PutCharacter(BLOCKINFO* bli, unsigned short chrNum, const int a, const int b, const unsigned int FontSize, unsigned int c);
 void MakeRectangle(BLOCKINFO* bli, int a, int b, int w, int h, unsigned int c);
 
 void main(BLOCKINFO* bi)
 {
-	Print(bi, "FuN", bi->ScreenWidth, 1, 1, 2, BADCYAN); // 70 117  78
+	// THIS WORKS
+	char st[] = "We have dynamic text !!!";
+	Print(bi, st, bi->ScreenWidth, 20, 50, 2, BADCYAN);
 	
 	while(1){__asm__ ("hlt");}
 }
 
-void Print(BLOCKINFO* bli, char* str, const int screenWidth, const int a, const int b, const unsigned int FontSize, unsigned int c)
+void Print(BLOCKINFO* bli, char str[], const int screenWidth, const int a, const int b, const unsigned int FontSize, unsigned int c)
 {
-	// THIS IS NOT WORKING. NOT SURE WHY.
-	// COMPARE TO main2.c in the testcode folder.
-	
-	#define DEBUGME 1    // TOGGLE THIS BETWEEN 0 AND 1
-	                     // 1 shows the upper code
-						 // 0 shows the lower code
-						 
-	unsigned char nrStr[4] = {'\0'};
-	memcpy(nrStr, str, 3);   // Was testing to see if this would
-	                         // resolve the problem or not. Apparently not.
-	
-	if(DEBUGME)
+	char* nrStr = str;
+	int i = 0;
+	unsigned char l = 0;
+	int x = a;
+	int y = b;
+	unsigned int fs = (((FontSize * FontSize) + (FontSize * FontSize) + 6) + HSPACE);
+	while(nrStr[i] != '\0')
 	{
-		//char* nrStr = str;   // F = 70, u = 117,  N = 78
-		int i = 0;
-		char l = 0;
-		int x = 3;
-		unsigned int fs = (((FontSize * FontSize) + (FontSize * FontSize) + 6) + HSPACE);
-		do{
-			l = nrStr[i];
-			i++;
-			if(l == 117) {PutCharacter(bli, 117, 1, 1, FontSize, c);}
-			PutCharacter(bli, l, x, 50, FontSize, c);
-			x += fs;
-			if(i > 16){break;}
-		} while(l != 0);
-		// This rectangle is our way of saying "Done"
-		MakeRectangle(bli, 1, 200, 20, 40, GREEN);
-		PutCharacter(bli, i, 3, 203, FontSize, c);
-	} else {
-		//char* nrStr = str;   // F = 70, u = 117,  N = 78
-		int i = 0;
-		unsigned short l = 0;
-		do{
-			l = nrStr[i];
-			i++;
-			if(l == 117) {PutCharacter(bli, 117, 1, 1, FontSize, c);}
-			if(i > 16){break;}
-		} while(l != 0);
-		// This rectangle is our way of saying "Done"
-		MakeRectangle(bli, 1, 200, 20, 40, GREEN);
+		l = nrStr[i];
+		PutCharacter(bli, l, x, y, FontSize, c);
+		i++;
+		x+=fs;
 	}
 }
 
@@ -390,160 +358,3 @@ unsigned long long strlen(char* str)
 	return strCount - str - 1;
 }
 
-void* memcpy(void* dst, const void* src, unsigned long long size)
-{
-    for ( unsigned long long i = 0; i < size; i++ )
-        ((unsigned char*) dst)[i] = ((const unsigned char*) src)[i];
-    return dst;
-}
-
-int memcmp(const void* src1, const void* src2, unsigned long long numberOfBytes)
-{
-  unsigned char const* str1 = src1;
-  unsigned char const* str2 = src2;
-
-  while (numberOfBytes--) {
-    if (*str1 != *str2)
-      return (int)*str1 - (int)*str2;
-    str1++;
-    str2++;
-  }
-
-  return 0;
-}
-
-void *memset(void* str, int chr, unsigned long long numberOfBytes)
-{
-  unsigned char* dest = str;
-
-  while (numberOfBytes--)
-    *dest++ = (unsigned char)chr;
-
-  return str;
-}
-
-void* memmove(void* destination, const void* source, unsigned long long numberOfBytes)
-{
-  unsigned char* dest = destination;
-  unsigned char const* src = source;
-
-  if (dest < src) {
-    while (numberOfBytes--)
-      *dest++ = *src++;
-  } else {
-    dest += numberOfBytes;
-    src += numberOfBytes;
-    while (numberOfBytes--)
-      *--dest = *--src;
-  }
-
-  return destination;
-}
-
-void* memchr(const void* string, int chr, unsigned long long numberOfBytes)
-{
-	unsigned long long   i = 0;
-	unsigned char*       str       = (unsigned char*)string;
-	unsigned char        asciiChar = (unsigned char)chr;
-	while (i < numberOfBytes)
-	{
-		if (*str == asciiChar)
-		{
-			return (str);
-		}
-		str++;
-		i++;
-	}
-	return (void*)0;
-}
-
-/*
-	int x = a;
-	int y = b;
-    unsigned int fs = (((FontSize * FontSize) + (FontSize * FontSize) + 6) + HSPACE);
-	for(unsigned long long t = 0; t < 128; t++)
-	{
-		PutCharacter(bli, t, x, y, FontSize, c);
-		x+=fs;
-		if(x > (screenWidth - fs))
-		{
-			x = a;
-			y += (fs * 2);
-		}
-	}
-*/
-	/*
-	for(unsigned long long t = 0; t < 128; t++)
-	{
-		PutCharacter(bli, t, x, y, FontSize, c);
-		x+=fs;
-		if(x > (screenWidth - fs))
-		{
-			x = a;
-			y += (fs * 2);
-		}
-	}
-	*/
-	
-// -Wno-unused-variable -ansi -masm=intel -std=c99 -O0 -nostdinc -nostdlib -ffreestanding
-
-// __asm__ __volatile__
-
-
-/*   // PSEUDO EXAMPLE
- // 000  --  NULL 
-00000000100100001101000010110000 ---> 9490608
-10010000000000000001010000010100 ---> 2415924244
-00010100000111000000000000000100 ---> 337379332
-00000100000001000000011100000000 ---> 67372800
-
-	for(long t = 31; t >= 0; t--)
-    {
-      	if(155 & (1<<t))
-        {
-            Bit number is SET
-        } else
-        {
-            Bit number is not SET
-        }
-     }
-*/
-/*
-	int x = a;
-	int y = b;
-	long lngth = strlen(&q);
-
-	for(long t = 0; t < lngth; t++)
-	{
-		MakeRectangle(bli, x, 1, 20, 40, GREEN);
-		x+=24;
-	}
-	x = a;
-	for(long t = 0; t < c; t++)
-	{
-		char l = q;
-		PutCharacter(bli, l, x, y, FontSize, c);
-		x+=fs;
-		if(x > (screenWidth - fs))
-		{
-			x = a;
-			y += (fs * 2);
-		}
-	}
-*/
-
-/*
-	unsigned int fs = (((FontSize * FontSize) + (FontSize * FontSize) + 6) + HSPACE);
-	int i = 0;
-	int x = 1;
-	while(st[i] != '\0')
-	{
-		PutCharacter(bli, st[i], x, 6, FontSize, c);
-		i++;
-		if(i > 16){break;}
-		x+=fs;
-	}
-	
-	MakeRectangle(bli, 1, 300, 20, 40, ORANGE);
-	PutCharacter(bli, i, 3, 303, FontSize, c);
-*/
