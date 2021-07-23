@@ -1,4 +1,4 @@
-void itoa(unsigned long int n, unsigned short int* buffer, int basenumber)
+void itoa(unsigned long int n, unsigned long int* buffer, unsigned long int basenumber)
 {
 	unsigned long int hold;
 	int i, j;

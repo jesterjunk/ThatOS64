@@ -8,30 +8,30 @@
 
 void main(BLOCKINFO* bi)
 {
-	char st3[] = "Graphics Memory Address : ";
+	unsigned char st3[] = "Graphics Memory Address : ";
 	Print(bi, st3, bi->ScreenWidth, 20, 10, 1, ORANGE);
 	
 	unsigned short int pTr2[13] = {'\0'};
 	pTr2[0] = '0';
 	pTr2[1] = 'x';
-	unsigned short int pTr[11] = {'\0'};
+	unsigned long int pTr[11] = {'\0'};
 	itoa(*(unsigned long int*)&bi->BaseAddress, pTr, 16);
 	int s = 2;
 	for(int k = 0; k < 11; k++)
 	{
-		pTr2[s++] = pTr[k];
+		pTr2[s++] = (unsigned short int)pTr[k];
 	}
-	char* test = (char*)pTr2;
-	int x = 250;
+	unsigned char* test = (unsigned char*)pTr2;
+	unsigned int x = 250;
 	for(int u = 1; u < 21; u++)
 	{
-		char j = *test;
+		unsigned char j = *test;
 		Print(bi, &j, bi->ScreenWidth, x, 10, 1, BADCYAN);
 		test++;
 		x+=4;
 	}
 	
-	char st2[] = "End Program";
+	unsigned char st2[] = "End Program";
 	Print(bi, st2, bi->ScreenWidth, 20, 90, 1, CYAN);
 	
 	while(1){__asm__ ("hlt");}
