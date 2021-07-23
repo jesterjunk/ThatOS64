@@ -32,7 +32,7 @@ void main(BLOCKINFO* bi)
 	}
 	
 	unsigned char st2[] = "End Program";
-	Print(bi, st2, bi->ScreenWidth, 20, 90, 1, CYAN);
+	Print(bi, st2, bi->ScreenWidth, 20, 50, 1, CYAN);
 	
 	while(1){__asm__ ("hlt");}
 }
