@@ -1,6 +1,9 @@
 // Operating System from Scratch Tutorials - ThatOSDev ( 2021 )
 // https://github.com/ThatOSDev/ThatOS64
 
+#define HEX     16
+#define DECIMAL 10
+
 #define BITS8   7
 #define BITS16 15
 #define BITS32 31
@@ -46,6 +49,7 @@ long long strlen(char* str);
 void Print(unsigned char str[], const unsigned int a, const unsigned int b, const unsigned int FontSize, unsigned int c);
 void PutCharacter(unsigned int chrNum, const unsigned int a, const unsigned int b, const unsigned int FontSize, unsigned int c);
 void MakeRectangle(unsigned int a, unsigned int b, unsigned int w, unsigned int h, unsigned int c);
+void itoa(unsigned long int n, unsigned long int* buffer, unsigned long int basenumber);
 
 // https://gcc.gnu.org/onlinedocs/gcc-3.2/gcc/Variable-Attributes.html
 // EXAMPLE : unsigned int MYTEST_P __attribute__ ((section (".text")));
@@ -56,14 +60,57 @@ void main(BLOCKINFO* bi)
 {
 	block = bi;
 	
+	unsigned char st3[] = "Graphics Memory Address : ";
+	Print(st3, 20, 35, 1, GREEN);
+	
+	unsigned short int pTr2[16] = {'\0'};
+	pTr2[0] = '0';
+	pTr2[1] = 'x';
+	unsigned long int pTr[13] = {'\0'};
+	itoa(*(unsigned long int*)&block->BaseAddress, pTr, HEX);
+	int s = 2;
+	for(int k = 0; k < 11; k++)
+	{
+		pTr2[s++] = (unsigned short int)pTr[k];
+	}
+	unsigned char* test = (unsigned char*)pTr2;
+	unsigned int x = 250;
+	for(int u = 1; u < 21; u++)
+	{
+		unsigned char j = *test;
+		Print(&j, x, 35, 1, WHITE);
+		test++;
+		x+=4;
+	}
+	
 	unsigned char st[] = "We have dynamic text !!!";
 	Print(st, 20, 50, 2, BADCYAN);
 	
 	unsigned char st2[] = "Welcome to Graphic Text Programming.";
 	Print(st2, 20, 10, 1, ORANGE);
 	
-	
 	while(1){__asm__ ("hlt");}
+}
+
+void itoa(unsigned long int n, unsigned long int* buffer, unsigned long int basenumber)
+{
+	unsigned long int hold;
+	int i, j;
+	hold = n;
+	i = 0;
+	
+	do{
+		hold = n % basenumber;
+		buffer[i++] = (hold < 10) ? (hold + '0') : (hold + 'a' - 10);
+	} while(n /= basenumber);
+	buffer[i--] = 0;
+	
+	for(j = 0; j < i; j++, i--)
+	{
+		hold = buffer[j];
+		buffer[j] = buffer[i];
+		buffer[i] = hold;
+	}
 }
 
 void Print(unsigned char str[], const unsigned int a, const unsigned int b, const unsigned int FontSize, unsigned int c)
@@ -366,4 +413,3 @@ long long strlen(char* str)
 	while (*strCount++);
 	return strCount - str - 1;
 }
-
