@@ -1,4 +1,4 @@
-void Print(BLOCKINFO* bli, unsigned char str[], const unsigned int screenWidth, const unsigned int a, const unsigned int b, const unsigned int FontSize, unsigned int c)
+void Print(unsigned char str[], const unsigned int a, const unsigned int b, const unsigned int FontSize, unsigned int c)
 {
 	unsigned char* nrStr = str;
 	int i = 0;
@@ -9,13 +9,13 @@ void Print(BLOCKINFO* bli, unsigned char str[], const unsigned int screenWidth, 
 	while(nrStr[i] != '\0')
 	{
 		l = nrStr[i];
-		PutCharacter(bli, l, x, y, FontSize, c);
+		PutCharacter(l, x, y, FontSize, c);
 		i++;
 		x+=fs;
 	}
 }
 
-void PutCharacter(BLOCKINFO* bli, unsigned int chrNum, const unsigned int a, const unsigned int b, const unsigned int FontSize, unsigned int c)
+void PutCharacter(unsigned int chrNum, const unsigned int a, const unsigned int b, const unsigned int FontSize, unsigned int c)
 {
 	// I'm not sure why, but splitting this up into groups of arrays works.
 	// My guess is, this is a stack issue, and splitting it up solves the stack issue.
@@ -222,47 +222,47 @@ unsigned int asciifont9[4] = {
 			{
 				if(asciifont[fc] & (unsigned int)(1 << t))
 				{
-					MakeRectangle(bli, x, y, FontSize, FontSize, c);
+					MakeRectangle(x, y, FontSize, FontSize, c);
 				}
 			} else if(togglearray == 1){
 				if(asciifont2[fc] & (unsigned int)(1 << t))
 				{
-					MakeRectangle(bli, x, y, FontSize, FontSize, c);
+					MakeRectangle(x, y, FontSize, FontSize, c);
 				}
 			} else if(togglearray == 2){
 				if(asciifont3[fc] & (unsigned int)(1 << t))
 				{
-					MakeRectangle(bli, x, y, FontSize, FontSize, c);
+					MakeRectangle(x, y, FontSize, FontSize, c);
 				}
 			} else if(togglearray == 3){
 				if(asciifont4[fc] & (unsigned int)(1 << t))
 				{
-					MakeRectangle(bli, x, y, FontSize, FontSize, c);
+					MakeRectangle(x, y, FontSize, FontSize, c);
 				}
 			} else if(togglearray == 4){
 				if(asciifont5[fc] & (unsigned int)(1 << t))
 				{
-					MakeRectangle(bli, x, y, FontSize, FontSize, c);
+					MakeRectangle(x, y, FontSize, FontSize, c);
 				}
 			} else if(togglearray == 5){
 				if(asciifont6[fc] & (unsigned int)(1 << t))
 				{
-					MakeRectangle(bli, x, y, FontSize, FontSize, c);
+					MakeRectangle(x, y, FontSize, FontSize, c);
 				}
 			} else if(togglearray == 6){
 				if(asciifont7[fc] & (unsigned int)(1 << t))
 				{
-					MakeRectangle(bli, x, y, FontSize, FontSize, c);
+					MakeRectangle(x, y, FontSize, FontSize, c);
 				}
 			} else if(togglearray == 7){
 				if(asciifont8[fc] & (unsigned int)(1 << t))
 				{
-					MakeRectangle(bli, x, y, FontSize, FontSize, c);
+					MakeRectangle(x, y, FontSize, FontSize, c);
 				}
 			} else {
 				if(asciifont9[fc] & (unsigned int)(1 << t))
 				{
-					MakeRectangle(bli, x, y, FontSize, FontSize, c);
+					MakeRectangle(x, y, FontSize, FontSize, c);
 				}
 			}
 			x += FontSize;
@@ -277,7 +277,7 @@ unsigned int asciifont9[4] = {
 	}
 }
 
-void MakeRectangle(BLOCKINFO* bli, unsigned int a, unsigned int b, unsigned int w, unsigned int h, unsigned int c)
+void MakeRectangle(unsigned int a, unsigned int b, unsigned int w, unsigned int h, unsigned int c)
 {
 	unsigned int width = (w + a);
 	unsigned int height = (h + b);
@@ -286,7 +286,7 @@ void MakeRectangle(BLOCKINFO* bli, unsigned int a, unsigned int b, unsigned int 
     {
         for(unsigned int x = a; x < width; x++)
         {
-            *(unsigned int*)(x + (y * bli->PixelsPerScanLine) + (unsigned int*)(bli->BaseAddress)) = c;
+            *(unsigned int*)(x + (y * block->PixelsPerScanLine) + (unsigned int*)(block->BaseAddress)) = c;
         }
     }
 }
