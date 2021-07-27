@@ -41,7 +41,7 @@
 	- ABI INTERFACE &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; --- [YT&nbsp;&nbsp; 2a](https://www.youtube.com/watch?v=T7iXp1UwaiA) | [YT&nbsp;&nbsp; 2b](https://www.youtube.com/watch?v=zkCHrM-B0Ig) | [YT&nbsp;&nbsp; 2c](https://www.youtube.com/watch?v=eUOr01eVGVM) ---  [CODE](https://github.com/ThatOSDev/ThatOS64/tree/master/src/code2)  
 	- GRAPHIC TEXT &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; --- [YT&nbsp;&nbsp; 3](https://www.youtube.com/watch?v=9d7TWvGsbts) ---  [CODE](https://github.com/ThatOSDev/ThatOS64/tree/master/src/code3)   
 	- ORGANIZATION AND TEXT POSITION &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; --- [YT&nbsp;&nbsp; 4](https://www.youtube.com/watch?v=wa75ifmBmro) ---  [CODE](https://github.com/ThatOSDev/ThatOS64/tree/master/src/code4)  
-	- Memory Manager - MMap / Paging / GDT / IDT &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; --- [YT&nbsp;&nbsp; 5a](https://www.youtube.com/watch?v=o6Z67fHswd4) | [YT&nbsp;&nbsp; 5b] ---  [CODE](https://github.com/ThatOSDev/ThatOS64/tree/master/src/code5)  
+	- Memory Manager - MMap / Paging / GDT / IDT &nbsp; &nbsp; &nbsp; --- [YT&nbsp;&nbsp; 5a](https://www.youtube.com/watch?v=o6Z67fHswd4) | [YT&nbsp;&nbsp; 5b] ---  [CODE](https://github.com/ThatOSDev/ThatOS64/tree/master/src/code5)  
 
 
 More Tuts Coming soon... ( **NOTE : The order of this list is subject to change** )  
