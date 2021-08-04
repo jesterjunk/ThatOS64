@@ -1,7 +1,7 @@
-void itoa(unsigned long int n, unsigned long int* buffer, unsigned long int basenumber)
+void itoa(uint32_t n, uint32_t* buffer, uint32_t basenumber)
 {
-	unsigned long int hold;
-	int i, j;
+	uint32_t hold;
+	int16_t i, j;
 	hold = n;
 	i = 0;
 	

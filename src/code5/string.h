@@ -1,10 +1,10 @@
 #ifndef STRING_H
 #define STRING_H
 
-void ClearScreen(unsigned int c);
-long long strlen(char* str);
-void Print(unsigned char str[], const unsigned int a, const unsigned int b, const unsigned int FontSize, unsigned int c);
-void PutCharacter(unsigned int chrNum, const unsigned int a, const unsigned int b, const unsigned int FontSize, unsigned int c);
-void MakeRectangle(unsigned int a, unsigned int b, unsigned int w, unsigned int h, unsigned int c);
+void ClearScreen(uint32_t c);
+int64_t strlen(int8_t* str);
+void Print(uint8_t str[], const uint32_t a, const uint32_t b, const uint32_t FontSize, uint32_t c);
+void PutCharacter(uint32_t chrNum, const uint32_t a, const uint32_t b, const uint32_t FontSize, uint32_t c);
+void MakeRectangle(uint32_t a, uint32_t b, uint32_t w, uint32_t h, uint32_t c);
 
 #endif // STRING_H

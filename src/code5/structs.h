@@ -4,30 +4,30 @@
 // From the UEFI PDF Page 170
 typedef struct EFI_MEMORY_DESCRIPTOR
 {
-	unsigned int        type;
+	uint32_t            type;
 	void*               PhysicalAddress;
 	void*               VirtualAddress;
-	unsigned long long  NumberOfPages;
-	unsigned long long  Attributes;
+	uint64_t            NumberOfPages;
+	uint64_t            Attributes;
 } EFI_MEMORY_DESCRIPTOR;
 
 typedef struct BLOCKINFO
 {
-    unsigned long long*     BaseAddress;
-    unsigned long long      BufferSize;
-    unsigned int            ScreenWidth;
-    unsigned int            ScreenHeight;
-    unsigned int            PixelsPerScanLine;
-	unsigned long long*     LoaderFileSize;
+    uint64_t*               BaseAddress;
+    uint64_t                BufferSize;
+    uint32_t                ScreenWidth;
+    uint32_t                ScreenHeight;
+    uint32_t                PixelsPerScanLine;
+	uint64_t*               LoaderFileSize;
 	EFI_MEMORY_DESCRIPTOR*  MMap;
-	unsigned long long      MMapSize;
-	unsigned long long      MMapDescriptorSize;
+	uint64_t                MMapSize;
+	uint64_t                MMapDescriptorSize;
 } __attribute__((__packed__)) BLOCKINFO;
 
 typedef struct TEXTPOSITION
 {
-    unsigned int x;
-    unsigned int y;
+    uint32_t     x;
+    uint32_t     y;
 } TEXTPOSITION;
 
 #endif // STRUCTS_H

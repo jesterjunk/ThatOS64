@@ -1,26 +1,26 @@
-void ClearScreen(unsigned int c)
+void ClearScreen(uint32_t c)
 {
-	unsigned int x = 0;
-	unsigned int y = 0;
-	unsigned int w = block->ScreenWidth;
-	unsigned int h = block->ScreenHeight;
+	uint32_t x = 0;
+	uint32_t y = 0;
+	uint32_t w = block->ScreenWidth;
+	uint32_t h = block->ScreenHeight;
 	MakeRectangle(x, y, w, h, c);
 	
 	textPos->x = 350;
 	textPos->y = 370;
 	
-	unsigned char st1[] = "ThatOS64";
+	uint8_t st1[] = "ThatOS64";
 	Print(st1, textPos->x, textPos->y, 3, EXTREMEGRAY);
 }
 
-void Print(unsigned char str[], const unsigned int a, const unsigned int b, const unsigned int FontSize, unsigned int c)
+void Print(uint8_t str[], const uint32_t a, const uint32_t b, const uint32_t FontSize, uint32_t c)
 {
-	unsigned char* nrStr = str;
+	uint8_t* nrStr = str;
 	int i = 0;
-	unsigned char l = 0;
-	unsigned int x = a;
-	unsigned int y = b;
-	unsigned int fs = (((FontSize * FontSize) + (FontSize * FontSize) + 6) + HSPACE);
+	uint8_t l = 0;
+	uint32_t x = a;
+	uint32_t y = b;
+	uint32_t fs = (((FontSize * FontSize) + (FontSize * FontSize) + 6) + HSPACE);
 	while(nrStr[i] != '\0')
 	{
 		l = nrStr[i];
@@ -30,11 +30,11 @@ void Print(unsigned char str[], const unsigned int a, const unsigned int b, cons
 	}
 }
 
-void PutCharacter(unsigned int chrNum, const unsigned int a, const unsigned int b, const unsigned int FontSize, unsigned int c)
+void PutCharacter(uint32_t chrNum, const uint32_t a, const uint32_t b, const uint32_t FontSize, uint32_t c)
 {
 	// I'm not sure why, but splitting this up into groups of arrays works.
 	// My guess is, this is a stack issue, and splitting it up solves the stack issue.
-unsigned int asciifont[64] = {
+uint32_t asciifont[64] = {
 9490608,2415924244,337379332,67372800,       // 000  --  NUL
 126,2175107457,3180953985,2113929216,        // 001  --  Start of Heading
 126,4292607999,3286761471,2113929216,        // 002  --  Start of Text
@@ -56,7 +56,7 @@ unsigned int asciifont[64] = {
 24,417021159,1020991512,0                    // 015  --  Shift In          
 };
 
-unsigned int asciifont2[64] = {
+uint32_t asciifont2[64] = {
 32960,3773888766,4176535744,2147483648,      // 016  --  Data Link Escape
 518,236863230,1042157062,33554432,           // 017  --  Device Control 1
 24,1014896664,410926104,0,                   // 018  --  Device Control 2
@@ -78,7 +78,7 @@ unsigned int asciifont2[64] = {
 0,4278090876,943198208,0                     // 031  --  Unit Separator  
 };
 
-unsigned int asciifont3[64] = {
+uint32_t asciifont3[64] = {
 0,0,0,0,                                     // 032  --  SPACE
 6204,1010571288,402659352,0,                 // 033  --  !
 102,1717969920,0,0,                          // 034  --  "
@@ -100,7 +100,7 @@ unsigned int asciifont3[64] = {
 0,33950744,811647104,0                       // 047  --  /
 };
 
-unsigned int asciifont4[64] = {
+uint32_t asciifont4[64] = {
 56,1824966358,3603351148,939524096,          // 048  --  0
 24,947394584,404232216,2113929216,           // 049  --  1
 60,1724255256,811647174,4261412864,          // 050  --  2
@@ -122,7 +122,7 @@ unsigned int asciifont4[64] = {
 124,3334867992,404226072,402653184           // 063  --  ?
 };
 
-unsigned int asciifont5[64] = {
+uint32_t asciifont5[64] = {
 124,3334921950,3739147456,2080374784,        // 064  --  @
 16,946652870,4274439878,3321888768,          // 065  --  A
 252,1717986940,1717986918,4227858432,        // 066  --  B
@@ -144,7 +144,7 @@ unsigned int asciifont5[64] = {
 124,3334915782,3334915782,2080374784         // 079  --  O
 };
 
-unsigned int asciifont6[64] = {
+uint32_t asciifont6[64] = {
 252,1717986940,1616928864,4026531840,        // 080  --  P
 124,3334915782,3334919902,2081164800,        // 081  --  Q
 252,1717986940,1818650214,3858759680,        // 082  --  R
@@ -166,7 +166,7 @@ unsigned int asciifont6[64] = {
 0,0,0,4278190080                             // 095  --  _
 };
 
-unsigned int asciifont7[64] = {
+uint32_t asciifont7[64] = {
 48,806879232,0,0,                            // 096  --  `
 0,30732,2093796556,1979711488,               // 097  --  a
 224,1616935020,1717986918,2080374784,        // 098  --  b
@@ -188,7 +188,7 @@ unsigned int asciifont7[64] = {
 0,30924,3435973836,2013265920                // 111  --  o
 };
 
-unsigned int asciifont8[64] = {
+uint32_t asciifont8[64] = {
 0,15462,1719427168,1610612736,               // 112  --  p
 0,30412,3435973756,202120704,                // 113  --  q
 0,56438,1717592160,4026531840,               // 114  --  r
@@ -210,11 +210,11 @@ unsigned int asciifont8[64] = {
 16,946652870,3334929920,0                    // 127  --  Delete
 };
 
-unsigned int asciifont9[4] = {
+uint32_t asciifont9[4] = {
 45733,15462,1719427168,1610612736,           // 128 ^
 };
 
-    char togglearray = 0;
+    int8_t togglearray = 0;
          if(chrNum >  15 && chrNum <   32){togglearray = 1; chrNum -=  16;}
 	else if(chrNum >  31 && chrNum <   48){togglearray = 2; chrNum -=  32;}
 	else if(chrNum >  47 && chrNum <   64){togglearray = 3; chrNum -=  48;}
@@ -224,58 +224,58 @@ unsigned int asciifont9[4] = {
 	else if(chrNum > 111 && chrNum <  128){togglearray = 7; chrNum -= 112;}
 	else if(chrNum > 127){chrNum = 0;}
 
-    unsigned long character = (chrNum * 4);
-	unsigned int x = a;
-	unsigned int y = b;
-	unsigned int temp = a;
-	int xPos = 0;
-	for(unsigned long fc = character; fc < (character + 4); fc++)
+    uint32_t character = (chrNum * 4);
+	uint32_t x = a;
+	uint32_t y = b;
+	uint32_t temp = a;
+	int32_t xPos = 0;
+	for(uint32_t fc = character; fc < (character + 4); fc++)
 	{
-		for(long t = BITS32; t >= 0; t--)
+		for(int32_t t = BITS32; t >= 0; t--)
 		{
 			if(togglearray == 0)
 			{
-				if(asciifont[fc] & (unsigned int)(1 << t))
+				if(asciifont[fc] & (uint32_t)(1 << t))
 				{
 					MakeRectangle(x, y, FontSize, FontSize, c);
 				}
 			} else if(togglearray == 1){
-				if(asciifont2[fc] & (unsigned int)(1 << t))
+				if(asciifont2[fc] & (uint32_t)(1 << t))
 				{
 					MakeRectangle(x, y, FontSize, FontSize, c);
 				}
 			} else if(togglearray == 2){
-				if(asciifont3[fc] & (unsigned int)(1 << t))
+				if(asciifont3[fc] & (uint32_t)(1 << t))
 				{
 					MakeRectangle(x, y, FontSize, FontSize, c);
 				}
 			} else if(togglearray == 3){
-				if(asciifont4[fc] & (unsigned int)(1 << t))
+				if(asciifont4[fc] & (uint32_t)(1 << t))
 				{
 					MakeRectangle(x, y, FontSize, FontSize, c);
 				}
 			} else if(togglearray == 4){
-				if(asciifont5[fc] & (unsigned int)(1 << t))
+				if(asciifont5[fc] & (uint32_t)(1 << t))
 				{
 					MakeRectangle(x, y, FontSize, FontSize, c);
 				}
 			} else if(togglearray == 5){
-				if(asciifont6[fc] & (unsigned int)(1 << t))
+				if(asciifont6[fc] & (uint32_t)(1 << t))
 				{
 					MakeRectangle(x, y, FontSize, FontSize, c);
 				}
 			} else if(togglearray == 6){
-				if(asciifont7[fc] & (unsigned int)(1 << t))
+				if(asciifont7[fc] & (uint32_t)(1 << t))
 				{
 					MakeRectangle(x, y, FontSize, FontSize, c);
 				}
 			} else if(togglearray == 7){
-				if(asciifont8[fc] & (unsigned int)(1 << t))
+				if(asciifont8[fc] & (uint32_t)(1 << t))
 				{
 					MakeRectangle(x, y, FontSize, FontSize, c);
 				}
 			} else {
-				if(asciifont9[fc] & (unsigned int)(1 << t))
+				if(asciifont9[fc] & (uint32_t)(1 << t))
 				{
 					MakeRectangle(x, y, FontSize, FontSize, c);
 				}
@@ -292,23 +292,23 @@ unsigned int asciifont9[4] = {
 	}
 }
 
-void MakeRectangle(unsigned int a, unsigned int b, unsigned int w, unsigned int h, unsigned int c)
+void MakeRectangle(uint32_t a, uint32_t b, uint32_t w, uint32_t h, uint32_t c)
 {
-	unsigned int width = (w + a);
-	unsigned int height = (h + b);
+	uint32_t width = (w + a);
+	uint32_t height = (h + b);
 	
-	for(unsigned int y = b; y < height; y++)
+	for(uint32_t y = b; y < height; y++)
     {
-        for(unsigned int x = a; x < width; x++)
+        for(uint32_t x = a; x < width; x++)
         {
-            *(unsigned int*)(x + (y * block->PixelsPerScanLine) + (unsigned int*)(block->BaseAddress)) = c;
+            *(uint32_t*)(x + (y * block->PixelsPerScanLine) + (uint32_t*)(block->BaseAddress)) = c;
         }
     }
 }
 
-long long strlen(char* str)
+int64_t strlen(int8_t* str)
 {
-	char* strCount = str;
+	int8_t* strCount = str;
 
 	while (*strCount++);
 	return strCount - str - 1;

@@ -4,6 +4,6 @@
 #ifndef STDLIB_H
 #define STDLIB_H
 
-void itoa(unsigned long int n, unsigned long int* buffer, unsigned long int basenumber);
+void itoa(uint32_t n, uint32_t* buffer, uint32_t basenumber);
 
 #endif // STDLIB_H
