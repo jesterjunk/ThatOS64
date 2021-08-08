@@ -36,6 +36,7 @@
 
 
 # STRUCT FROM THE EFI BOOTLOADER
+**NOTE: This is current starting with CODE5  
 ```c
 typedef struct BLOCKINFO
 {
