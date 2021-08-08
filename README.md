@@ -35,6 +35,23 @@
 - **BEGINNER MISTAKES** : [https://wiki.osdev.org/Beginner_Mistakes](https://wiki.osdev.org/Beginner_Mistakes)  
 
 
+# STRUCT FROM THE EFI BOOTLOADER
+```c
+typedef struct BLOCKINFO
+{
+    uint64_t*               BaseAddress;
+    uint64_t                BufferSize;
+    uint32_t                ScreenWidth;
+    uint32_t                ScreenHeight;
+    uint32_t                PixelsPerScanLine;
+	uint64_t*               LoaderFileSize;
+	EFI_MEMORY_DESCRIPTOR*  MMap;
+	uint64_t                MMapSize;
+	uint64_t                MMapDescriptorSize;
+	void*                   rsdp;
+} __attribute__((__packed__)) BLOCKINFO;
+```
+  
 # TUTORIALS
 - RIGHT CLICK THE LINKS AND OPEN IN NEW TAB  
 	- INITIAL SETUP &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; --- [YT&nbsp;&nbsp; 1](https://www.youtube.com/watch?v=WCFEEboRHNg)  ---  [CODE](https://github.com/ThatOSDev/ThatOS64/tree/master/src/code1)  
