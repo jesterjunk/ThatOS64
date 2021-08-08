@@ -6,11 +6,11 @@ void ClearScreen(uint32_t c)
 	uint32_t h = block->ScreenHeight;
 	MakeRectangle(x, y, w, h, c);
 	
-	textPos->x = 350;
-	textPos->y = 370;
+	textPos->x = 630;
+	textPos->y = 450;
 	
 	uint8_t st1[] = "ThatOS64";
-	Print(st1, textPos->x, textPos->y, 3, EXTREMEGRAY);
+	Print(st1, textPos->x, textPos->y, 5, EXTREMEGRAY);
 }
 
 void Print(uint8_t str[], const uint32_t a, const uint32_t b, const uint32_t FontSize, uint32_t c)

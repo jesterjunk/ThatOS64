@@ -22,6 +22,7 @@ typedef struct BLOCKINFO
 	EFI_MEMORY_DESCRIPTOR*  MMap;
 	uint64_t                MMapSize;
 	uint64_t                MMapDescriptorSize;
+	void*                   rsdp;
 } __attribute__((__packed__)) BLOCKINFO;
 
 typedef struct TEXTPOSITION
