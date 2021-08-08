@@ -6,6 +6,7 @@
 ![GitHub followers](https://img.shields.io/github/followers/ThatOSDev?style=social)  
 
 # NOTES  
+- Starting with CODE5, the resolution from the EFI file sets the screen height and width to 1920x1080.
 - Although this can work on real hardware, I do NOT recommend doing so unless you know what you are doing. Use virtualbox or qemu until **you know** you have solid working code.
 - For CODE1, you will need the BOOTX64.EFI file from my other GitHub Repo. https://github.com/ThatOSDev/UEFI-Tuts  
 - The drive.hdd file is included, I didn't realize this when I made the first video.  
