@@ -1,0 +1,12 @@
+void init8Bit(void)
+{
+	CLEAR_8BIT(0);
+	CLEAR_8BIT(1);
+	CLEAR_8BIT(2);
+	CLEAR_8BIT(3);
+	CLEAR_8BIT(4);
+	CLEAR_8BIT(5);
+	CLEAR_8BIT(6);
+	CLEAR_8BIT(7);
+}
+
