@@ -5,6 +5,9 @@
 ![GitHub watchers](https://img.shields.io/github/watchers/ThatOSDev/ThatOS64?style=social)  
 ![GitHub followers](https://img.shields.io/github/followers/ThatOSDev?style=social)  
 
+# THIS PROJECT IS ON HOLD  
+The reason I am putting this project on hold is do to how the GDT has convinced me that I need to write the loader file in assembly. Since the GDT is such a pain in the rump, I have decided to write that one file with FASM. The GDT will not work with inline assembly in a C file. I have never seen anyone actually acomplish this with GCC. I have read from others that they got it working, but when you actually test their code with GCC, it fails every time. So they are boasting for nothing. By using FASM, this will allow me to bootstrap the OS into a working state, that once I get to the point of writing the kernel, I can use C once more. This also allows me to work out the details for a proper Linker, so that I can link obj files together. Once that milestone is accomplished, then I can rewrite the loader once again in C. Bottom line, this is a catch-22 situation, since I am not using ELF or PE32+.  So this was the only solution I am able to work with at this time.  
+
 # NOTES  
 - Starting with CODE5, the resolution from the EFI file sets the screen height and width to 1920x1080.
 - Although this can work on real hardware, I do NOT recommend doing so unless you know what you are doing. Use virtualbox or qemu until **you know** you have solid working code.
