@@ -15,10 +15,10 @@ void main(BLOCKINFO* bi)
 	block = bi;
 	
 	//gdt_init();  // Working on this
-	
+
 	uint64_t testingme = READ_cr2();
 	
-	ClearScreen(DARKGRAY);
+	//ClearScreen(DARKGRAY);
 	
 	textPos->x = 20;
 	textPos->y = 10;
