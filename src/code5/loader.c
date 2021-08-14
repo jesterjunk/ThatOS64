@@ -13,9 +13,10 @@
 void main(BLOCKINFO* bi)
 {
 	block = bi;
-	
+	block->BaseAddress = (bi->BaseAddress - 128);
+
 	ClearScreen(DARKGRAY);
-	
+
 	textPos->x = 20;
 	textPos->y = 10;
 	
@@ -98,7 +99,7 @@ void main(BLOCKINFO* bi)
 	
 	uint8_t st3[] = "End Program";
 	Print(st3, textPos->x, textPos->y, 1, CYAN);
-	
+
 	while(1){__asm__ ("hlt");}
 }
 

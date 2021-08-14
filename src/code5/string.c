@@ -1,11 +1,11 @@
 void ClearScreen(uint32_t c)
 {
-	uint32_t x = 1;
-	uint32_t y = 1;
-	uint32_t w = block->ScreenWidth - 1;
-	uint32_t h = block->ScreenHeight - 1;
+	uint32_t x = 0;
+	uint32_t y = 0;
+	uint32_t w = block->ScreenWidth;
+	uint32_t h = block->ScreenHeight;
 	MakeRectangle(x, y, w, h, c);
-	
+
 	textPos->x = (block->ScreenWidth / 2) - 250;
 	textPos->y = (block->ScreenHeight / 2) - 50;
 	
@@ -294,8 +294,8 @@ uint32_t asciifont9[4] = {
 
 void MakeRectangle(uint32_t a, uint32_t b, uint32_t w, uint32_t h, uint32_t c)
 {
-	uint32_t width = (w + a);
-	uint32_t height = (h + b);
+	uint32_t width = (a + w);
+	uint32_t height = (b + h);
 	
 	for(uint32_t y = b; y < height; y++)
     {
