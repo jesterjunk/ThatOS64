@@ -42,7 +42,7 @@
 ```c
 typedef struct BLOCKINFO
 {
-    uint64_t*              BaseAddress;
+    uint64_t               BaseAddress;
     uint64_t               BufferSize;
     uint32_t               ScreenWidth;
     uint32_t               ScreenHeight;
