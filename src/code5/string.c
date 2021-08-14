@@ -1,13 +1,13 @@
 void ClearScreen(uint32_t c)
 {
-	uint32_t x = 0;
-	uint32_t y = 0;
-	uint32_t w = block->ScreenWidth;
-	uint32_t h = block->ScreenHeight;
+	uint32_t x = 1;
+	uint32_t y = 1;
+	uint32_t w = block->ScreenWidth - 1;
+	uint32_t h = block->ScreenHeight - 1;
 	MakeRectangle(x, y, w, h, c);
 	
-	textPos->x = 630;
-	textPos->y = 450;
+	textPos->x = (block->ScreenWidth / 2) - 250;
+	textPos->y = (block->ScreenHeight / 2) - 50;
 	
 	uint8_t st1[] = "ThatOS64";
 	Print(st1, textPos->x, textPos->y, 5, EXTREMEGRAY);

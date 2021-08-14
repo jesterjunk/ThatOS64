@@ -14,13 +14,12 @@ void main(BLOCKINFO* bi)
 {
 	block = bi;
 	
-	uint64_t testingme = READ_cr2();
-	
 	ClearScreen(DARKGRAY);
 	
 	textPos->x = 20;
 	textPos->y = 10;
 	
+	uint64_t testingme = READ_cr2();
 	uint8_t st2[] = "CR2 has been read successfully !!!";
 	Print(st2, textPos->x, textPos->y, 1, ORANGE);
 
