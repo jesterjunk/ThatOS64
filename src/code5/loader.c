@@ -39,16 +39,25 @@ void main(BLOCKINFO* bi)
 	
 	textPos->x  = 124;
 		
-	uint64_t  pTr[80] = {'\0'};
-	itoa(*(uint64_t*)&TotalRam, pTr, DECIMAL);
+	uint8_t pTr[100] = {'\0'};
+	itoa(*(uint64_t*)&TotalRam, (uint64_t*)pTr, DECIMAL);
 	uint8_t* test = (uint8_t*)pTr;
-	for(int u = 1; u < 81; u++)
+	int o = 0;
+	while(1)
 	{
 		uint8_t j = *test;
+		if(j == '\0')
+		{
+			o++;
+			if(o > 7){break;}
+		} else 
+		{
+			o = 0;
+		}
 		Print(&j, textPos->x, textPos->y, 1, WHITE);
 		test++;
 		textPos->x++;
-	}
+	};
 
 	uint8_t st3[] = " Bytes";
 	Print(st3, textPos->x, textPos->y, 1, GRAY);
