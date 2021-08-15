@@ -4,7 +4,7 @@
 // From the UEFI PDF Page 170
 typedef struct EFI_MEMORY_DESCRIPTOR
 {
-	uint32_t  type;
+	uint32_t  Type;
 	uint64_t* PhysicalAddress;
 	uint64_t* VirtualAddress;
 	uint64_t  NumberOfPages;
