@@ -14,71 +14,71 @@ void PrintMemory(uint32_t m)
 {
     if(m == 0)
 	{
-			uint8_t st[] = "0. EfiReservedMemoryType";
+			uint8_t st[] = "0. ReservedMemoryType";
 			Print(st, textPos->x, textPos->y, 1, CYAN);
 	} else if(m == 1)
 	{
-			uint8_t st[] = "1. EfiLoaderCode";
+			uint8_t st[] = "1. LoaderCode";
 			Print(st, textPos->x, textPos->y, 1, CYAN);
 	} else if(m == 2)
 	{
-            uint8_t st[] = "2. EfiLoaderData";
+            uint8_t st[] = "2. LoaderData";
 			Print(st, textPos->x, textPos->y, 1, CYAN);
 	} else if(m == 3)
 	{
-		   uint8_t st[] = "3. EfiBootServicesCode";
+		   uint8_t st[] = "3. BootServicesCode";
 		   Print(st, textPos->x, textPos->y, 1, CYAN);
 	} else if(m == 4)
 	{
-	       uint8_t st[] = "4. EfiBootServicesData";
+	       uint8_t st[] = "4. BootServicesData";
 	       Print(st, textPos->x, textPos->y, 1, CYAN);
 	} else if(m == 5)
 	{
-	       uint8_t st[] = "5. EfiRuntimeServicesCode";
+	       uint8_t st[] = "5. RuntimeServicesCode";
 	       Print(st, textPos->x, textPos->y, 1, CYAN);
 	} else if(m == 6)
 	{
-	       uint8_t st[] = "6. EfiRuntimeServicesData";
+	       uint8_t st[] = "6. RuntimeServicesData";
 	       Print(st, textPos->x, textPos->y, 1, CYAN);
 	} else if(m == 7)
 	{
-		   uint8_t st[] = "7. EfiConventionalMemory";
+		   uint8_t st[] = "7. ConventionalMemory";
 		   Print(st, textPos->x, textPos->y, 1, CYAN);
 	} else if(m == 8)
 	{
-	       uint8_t st[] = "8. EfiUnusableMemory";
+	       uint8_t st[] = "8. UnusableMemory";
 	       Print(st, textPos->x, textPos->y, 1, CYAN);
 	} else if(m == 9)
 	{
-	       uint8_t st[] = "9. EfiACPIReclaimMemory";
+	       uint8_t st[] = "9. ACPIReclaimMemory";
 	       Print(st, textPos->x, textPos->y, 1, CYAN);
 	} else if(m == 10)
 	{
-		   uint8_t st[] = "10. EfiACPIMemoryNVS";
+		   uint8_t st[] = "10. ACPIMemoryNVS";
 		   Print(st, textPos->x, textPos->y, 1, CYAN);
 	} else if(m == 11)
 	{
-		   uint8_t st[] = "11. EfiMemoryMappedIO";
+		   uint8_t st[] = "11. MemoryMappedIO";
 		   Print(st, textPos->x, textPos->y, 1, CYAN);
 	} else if(m == 12)
 	{
-		   uint8_t st[] = "12. EfiMemoryMappedIOPortSpace";
+		   uint8_t st[] = "12. MemoryMappedIOPortSpace";
 		   Print(st, textPos->x, textPos->y, 1, CYAN);
 	} else if(m == 13)
 	{
-		   uint8_t st[] = "13. EfiPalCode";
+		   uint8_t st[] = "13. PalCode";
 		   Print(st, textPos->x, textPos->y, 1, CYAN);
 	} else if(m == 14)
 	{
-		   uint8_t st[] = "14. EfiPersistentMemory";
+		   uint8_t st[] = "14. PersistentMemory";
 		   Print(st, textPos->x, textPos->y, 1, CYAN);
 	} else if(m == 15)
 	{
-		   uint8_t st[] = "15. EfiUnacceptedMemoryType";
+		   uint8_t st[] = "15. UnacceptedMemoryType";
 		   Print(st, textPos->x, textPos->y, 1, CYAN);
 	} else if(m == 16)
 	{
-		   uint8_t st[] = "16. EfiMaxMemoryType";
+		   uint8_t st[] = "16. MaxMemoryType";
 		   Print(st, textPos->x, textPos->y, 1, CYAN);
 	} else
 	{

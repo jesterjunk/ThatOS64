@@ -21,18 +21,43 @@ void main(BLOCKINFO* bi)
 	textPos->y  = 10;
 	
     uint64_t MMapEntries = block->MMapSize / block->MMapDescriptorSize;
+	uint64_t TotalRam = 0;
 	for(uint32_t i = 0; i < MMapEntries; i++)
 	{
 		EFI_MEMORY_DESCRIPTOR* desc = (EFI_MEMORY_DESCRIPTOR*)((uint64_t)block->MMap + (i * block->MMapDescriptorSize));
 		
 		PrintMemory(desc->Type);
+		
+		TotalRam += (desc->NumberOfPages * 4096);
 
 		textPos->y += 16;
 		textPos->x  = 20;
 	}
 	
-	uint8_t st3[] = "End Program";
-	Print(st3, textPos->x, textPos->y, 1, GREEN);
+	uint8_t st2[] = "TOTAL RAM :";
+	Print(st2, textPos->x, textPos->y, 1, YELLOW);
+	
+	textPos->x  = 124;
+		
+	uint64_t  pTr[80] = {'\0'};
+	itoa(*(uint64_t*)&TotalRam, pTr, DECIMAL);
+	uint8_t* test = (uint8_t*)pTr;
+	for(int u = 1; u < 81; u++)
+	{
+		uint8_t j = *test;
+		Print(&j, textPos->x, textPos->y, 1, WHITE);
+		test++;
+		textPos->x++;
+	}
+
+	uint8_t st3[] = " Bytes";
+	Print(st3, textPos->x, textPos->y, 1, GRAY);
+	
+	textPos->y += 16;
+	textPos->x  = 20;
+		
+	uint8_t st4[] = "End Program";
+	Print(st4, textPos->x, textPos->y, 1, GREEN);
 	
 	while(1){__asm__ ("hlt");}
 }
