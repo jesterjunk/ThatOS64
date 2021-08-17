@@ -39,7 +39,7 @@ void main(BLOCKINFO* bi)
 	
 	textPos->x  = 124;
 		
-	uint8_t pTr[100] = {'\0'};
+	uint8_t pTr[1024] = {'\0'};
 	itoa(*(uint64_t*)&TotalRam, (uint64_t*)pTr, DECIMAL);
 	uint8_t* test = (uint8_t*)pTr;
 	int o = 0;
