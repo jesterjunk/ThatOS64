@@ -10,4 +10,6 @@ uint8_t* bitmap8 __attribute__ ((section (".text"))) = 0;
 #define GET_8BIT(gBit)  ((bitmap8[(gBit) / 8] >> ((gBit) % 8)) & 1)
 #define FLIP_8BIT(fBit)  (bitmap8[(fBit) / 8] ^= (1 << ((fBit) % 8)))
 
+uint64_t GetTotalRam(void);
+
 #endif  // MMAP_H
