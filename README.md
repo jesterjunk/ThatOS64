@@ -6,6 +6,7 @@
 ![GitHub followers](https://img.shields.io/github/followers/ThatOSDev?style=social)  
 
 # NOTES  
+- WARNING - This code is for teaching purposes only. It is not written for professional use. Some code is written in order to speed up teaching, and thus is not properly coded. You should rewrite the code for your own professional use.  
 - Starting with CODE5, the resolution from the EFI file sets the screen height and width to 1920x1080.
 - Although this can work on real hardware, I do NOT recommend doing so unless you know what you are doing. Use virtualbox or qemu until **you know** you have solid working code.
 - For CODE1, you will need the BOOTX64.EFI file from my other GitHub Repo. https://github.com/ThatOSDev/UEFI-Tuts  
