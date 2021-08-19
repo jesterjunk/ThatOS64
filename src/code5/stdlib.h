@@ -1,5 +1,5 @@
-// A basic C Library written from scratch - ThatOSDev ( 2021 )
-// https://github.com/ThatOSDev/ThatCLib
+// A 64-Bit Operating System written from scratch - ThatOSDev ( 2021 )
+// https://github.com/ThatOSDev/ThatOS64
 
 #ifndef STDLIB_H
 #define STDLIB_H

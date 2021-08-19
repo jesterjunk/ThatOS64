@@ -1,3 +1,6 @@
+// A 64-Bit Operating System written from scratch - ThatOSDev ( 2021 )
+// https://github.com/ThatOSDev/ThatOS64
+
 #ifndef GLOBALS_H
 #define GLOBALS_H
 

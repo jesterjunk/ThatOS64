@@ -1,3 +1,6 @@
+// A 64-Bit Operating System written from scratch - ThatOSDev ( 2021 )
+// https://github.com/ThatOSDev/ThatOS64
+
 #ifndef CR_REGISTERS_H
 #define CR_REGISTERS_H
 

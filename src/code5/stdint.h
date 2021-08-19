@@ -1,3 +1,6 @@
+// A basic C Library written from scratch - ThatOSDev ( 2021 )
+// https://github.com/ThatOSDev/ThatCLib
+
 #ifndef STDINT_H
 #define STDINT_H
 
@@ -43,12 +46,12 @@ typedef float               float_t;
 typedef double              double_t;
 
 typedef signed char         int8_t;
-typedef short               int16_t;
-typedef long int            int32_t;
-typedef long long           int64_t;
+typedef signed short int    int16_t;
+typedef signed long int     int32_t;
+typedef signed long long    int64_t;
 
 typedef unsigned char       uint8_t;
-typedef unsigned short      uint16_t;
+typedef unsigned short int  uint16_t;
 typedef unsigned long int   uint32_t;
 typedef unsigned long long  uint64_t;
 

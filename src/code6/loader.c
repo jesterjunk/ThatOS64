@@ -12,23 +12,23 @@
 
 void main(BLOCKINFO* bi)
 {
-	block = bi;
-	block->BaseAddress = (bi->BaseAddress - 128);
-	
-	ClearScreen(DARKGRAY);
-	
-	textPos->x  = 20;
-	textPos->y  = 10;
-	
+    block = bi;
+    block->BaseAddress = (bi->BaseAddress - 128); // This fixes the GOP address
+
+    ClearScreen(DARKGRAY);
+
+    textPos->x  = 20;
+    textPos->y  = 10;
+
     // TODO : Paging
-	
-	textPos->y += 16;
-	textPos->x  = 20;
-		
-	uint8_t st4[] = "End Program";
-	Print(st4, textPos->x, textPos->y, 1, GREEN);
-	
-	while(1){__asm__ ("hlt");}
+
+    textPos->y += 16;
+    textPos->x  = 20;
+
+    uint8_t st4[] = "End Program";
+    Print(st4, textPos->x, textPos->y, 1, GREEN);
+
+    while(1){__asm__ ("hlt");}
 }
 
 #include "stdlib.c"
